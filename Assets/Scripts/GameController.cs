@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
     {
         reachedLevel = 1;
         currLevel = 1;
-        /* 
+        
         string scenename = SceneManager.GetActiveScene().name;
         if (scenename.Substring(0, 5).Equals("Level")) {
           int level = System.Convert.ToInt32(scenename.Substring(5));
@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
         else if (scenename.Equals("GameMenu")) {
           GameObject.Find("Level_Select_Canvas").GetComponent<Canvas>().enabled = false;
         }
-        */
+        
     }
 
     private void Awake()

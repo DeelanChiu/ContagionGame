@@ -58,6 +58,16 @@ public class GameState
         initColor = GameObject.Find("Square00").GetComponent<SpriteRenderer>().color;
         */
 
+        Vector3 pos = new Vector3(0, 0, 100);
+        Object town = null;
+        string prefabName = "Prefabs/Town";
+        town = Resources.Load<GameObject>(prefabName);
+        Debug.Log(town == null);
+        GameObject town_go = (GameObject)Object.Instantiate(town, pos, Quaternion.identity);
+        town_go.name = "Town1";
+        Town tn = town_go.GetComponent<Town>();
+
+
     }
 
 }

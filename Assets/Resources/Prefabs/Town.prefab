@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4108966037743254}
   - component: {fileID: 212863454781724722}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Town
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -70,8 +70,9 @@ public abstract class GameItem : MonoBehaviour {
       } else if (itemtype.Equals(ItemType.FIRE)) {
         //fire reset
         Destroy(go);
-        */
+    
       }
+      */
     }
 
     /*
