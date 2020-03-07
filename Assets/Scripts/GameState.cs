@@ -62,10 +62,65 @@ public class GameState
         Object town = null;
         string prefabName = "Prefabs/Town";
         town = Resources.Load<GameObject>(prefabName);
-        Debug.Log(town == null);
         GameObject town_go = (GameObject)Object.Instantiate(town, pos, Quaternion.identity);
         town_go.name = "Town1";
         Town tn = town_go.GetComponent<Town>();
+
+        GameObject canvas_go;
+        GameObject text_go;
+        Canvas canvas;
+        Text text;
+        RectTransform rectTransform;
+
+        // Canvas
+        canvas_go = new GameObject();
+        canvas_go.name = "Canvas";
+        canvas_go.AddComponent<Canvas>();
+
+        canvas = canvas_go.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        canvas.worldCamera = Camera.main.GetComponent<Camera>();;
+        canvas.sortingOrder = 2;
+        canvas_go.AddComponent<CanvasScaler>();
+        canvas_go.AddComponent<GraphicRaycaster>();
+
+        // Text
+        text_go = new GameObject();
+        text_go.transform.parent = canvas_go.transform;
+        text_go.name = "wibble";
+
+        text = text_go.AddComponent<Text>();
+        text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        text.text = "wobble";
+        text.fontSize = 30;
+        text.alignment = TextAnchor.MiddleCenter;
+
+        // Text position
+        rectTransform = text.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(0, -40, 0);
+        rectTransform.sizeDelta = new Vector2(400, 200);
+        rectTransform.localScale = new Vector3(1f,1f,1f);
+        /*
+        Canvas canv;
+        GameObject ngo = new GameObject("myTextGO");
+        ngo.transform.SetParent(GameObject.Find("Canvas").GetComponent<Canvas>.transform);
+
+        Text myText = ngo.AddComponent<Text>();
+        myText.text = "Ta-dah!";
+        */
+        /*
+        GameObject canvas_go = (GameObject)GameObject.Find("Canvas").GetComponent<Canvas>();
+        Text text = canvas_go.AddComponent<Text>();
+        text.text = "hello";
+        
+        /*
+        Object townInfo = Resources.Load<GameObject>("Prefabs/TownInfo");
+        Debug.Log(townInfo == null);
+        GameObject townInfo_go = (GameObject)Object.Instantiate(townInfo, pos, Quaternion.identity);
+        Text townInfo_txt = townInfo_go.GetComponent<Text>();
+        townInfo_txt.text = "hello";
+        */
+
 
 
     }
