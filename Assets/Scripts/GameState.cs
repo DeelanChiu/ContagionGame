@@ -11,8 +11,6 @@ public class GameState
 {
     private int cols;
     private int rows;
-    Canvas canvas;
-    GameObject canvas_go;
 
     public bool LoseGame;
     public bool EndGame;
@@ -59,7 +57,7 @@ public class GameState
 
         initColor = GameObject.Find("Square00").GetComponent<SpriteRenderer>().color;
         */
-        
+        /*
         Vector3 pos = new Vector3(0, 0, 100);
         Object town = null;
         string prefabName = "Prefabs/Town";
@@ -67,44 +65,8 @@ public class GameState
         GameObject town_go = (GameObject)Object.Instantiate(town, pos, Quaternion.identity);
         town_go.name = "Town1";
         Town tn = town_go.GetComponent<Town>();
-        
-
-        // Canvas
-        canvas_go = new GameObject();
-        canvas_go.name = "Canvas";
-        canvas_go.AddComponent<Canvas>();
-
-        canvas = canvas_go.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceCamera;
-        canvas.worldCamera = Camera.main.GetComponent<Camera>();;
-        canvas.sortingOrder = 2;
-        canvas_go.AddComponent<CanvasScaler>();
-        canvas_go.AddComponent<GraphicRaycaster>();
-
-        // Text
-
-        
-        GameObject text_go;
-        Text text;
-        RectTransform rectTransform;
-
-
-        text_go = new GameObject();
-        text_go.transform.parent = canvas_go.transform;
-        text_go.name = "wibble";
-
-        text = text_go.AddComponent<Text>();
-        text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        text.text = "100\n100";
-        text.fontSize = 30;
-        text.lineSpacing = 0.8f;
-        text.alignment = TextAnchor.MiddleCenter;
-
-        // Text position
-        rectTransform = text.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(0, -48, 0);
-        rectTransform.sizeDelta = new Vector2(400, 200);
-        rectTransform.localScale = new Vector3(1f,1f,1f);
+        Debug.Log(tn == null);
+        */
 
         createTown();
     }
@@ -142,6 +104,7 @@ public class GameState
         
         //set XY
         Town tn = town_go.GetComponent<Town>();
+        Debug.Log(tn == null);
         tn.setXY(coordX, coordY);
     }
     
