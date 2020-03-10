@@ -13,6 +13,7 @@ public enum TownState
 public class Town : GameItem
 {
     public TownState state;
+    
 
     public void setTownState(string s)
     {

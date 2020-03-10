@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-//using SimpleJSON;
+using SimpleJSON;
 using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
@@ -11,6 +11,8 @@ public class GameState
 {
     private int cols;
     private int rows;
+    Canvas canvas;
+    GameObject canvas_go;
 
     public bool LoseGame;
     public bool EndGame;
@@ -57,7 +59,7 @@ public class GameState
 
         initColor = GameObject.Find("Square00").GetComponent<SpriteRenderer>().color;
         */
-
+        
         Vector3 pos = new Vector3(0, 0, 100);
         Object town = null;
         string prefabName = "Prefabs/Town";
@@ -65,12 +67,7 @@ public class GameState
         GameObject town_go = (GameObject)Object.Instantiate(town, pos, Quaternion.identity);
         town_go.name = "Town1";
         Town tn = town_go.GetComponent<Town>();
-
-        GameObject canvas_go;
-        GameObject text_go;
-        Canvas canvas;
-        Text text;
-        RectTransform rectTransform;
+        
 
         // Canvas
         canvas_go = new GameObject();
@@ -85,44 +82,68 @@ public class GameState
         canvas_go.AddComponent<GraphicRaycaster>();
 
         // Text
+
+        
+        GameObject text_go;
+        Text text;
+        RectTransform rectTransform;
+
+
         text_go = new GameObject();
         text_go.transform.parent = canvas_go.transform;
         text_go.name = "wibble";
 
         text = text_go.AddComponent<Text>();
         text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        text.text = "wobble";
+        text.text = "100\n100";
         text.fontSize = 30;
+        text.lineSpacing = 0.8f;
         text.alignment = TextAnchor.MiddleCenter;
 
         // Text position
         rectTransform = text.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(0, -40, 0);
+        rectTransform.localPosition = new Vector3(0, -48, 0);
         rectTransform.sizeDelta = new Vector2(400, 200);
         rectTransform.localScale = new Vector3(1f,1f,1f);
-        /*
-        Canvas canv;
-        GameObject ngo = new GameObject("myTextGO");
-        ngo.transform.SetParent(GameObject.Find("Canvas").GetComponent<Canvas>.transform);
 
-        Text myText = ngo.AddComponent<Text>();
-        myText.text = "Ta-dah!";
-        */
-        /*
-        GameObject canvas_go = (GameObject)GameObject.Find("Canvas").GetComponent<Canvas>();
-        Text text = canvas_go.AddComponent<Text>();
-        text.text = "hello";
-        
-        /*
-        Object townInfo = Resources.Load<GameObject>("Prefabs/TownInfo");
-        Debug.Log(townInfo == null);
-        GameObject townInfo_go = (GameObject)Object.Instantiate(townInfo, pos, Quaternion.identity);
-        Text townInfo_txt = townInfo_go.GetComponent<Text>();
-        townInfo_txt.text = "hello";
-        */
-
-
-
+        createTown();
     }
+    
+    private void createTown(/*JSONNode currTown*/)
+    {
+        int coordX = 0;
+        int coordY = 0;
+
+        float x = 0;
+        float y = 0;
+
+        if (coordX == 0){
+            x = -6.5f;
+        } else if (coordX == 1){
+            x = -2.2f;
+        } else if (coordX == 2){
+            x = 2.2f;
+        } else if (coordX == 3){
+            x = 6.5f;
+        }
+
+        if (coordY == 0){
+            y = 3.5f;
+        } else if (coordY == 1){
+            y = -0.5f;
+        } else if (coordY == 2){
+            y = -4.5f;
+        }
+
+        string prefabName = "Prefabs/Town";
+        Object town = Resources.Load<GameObject>(prefabName);
+        Vector3 pos = new Vector3(x, y, 100);
+        GameObject town_go = (GameObject)Object.Instantiate(town, pos, Quaternion.identity);
+        
+        //set XY
+        Town tn = town_go.GetComponent<Town>();
+        tn.setXY(coordX, coordY);
+    }
+    
 
 }
