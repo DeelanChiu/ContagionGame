@@ -10,12 +10,13 @@ public enum TownState
     HEALTHY,
     WARNING,
     INFECTED,
-    OVERRUN
+    OFFLINE
 }
 
 public class Town : GameItem
 {
     public TownState state;
+    private Animator animator;
     private int population = 100;
     private int infectionProb = 50;
     
@@ -34,9 +35,9 @@ public class Town : GameItem
         {
             state = TownState.INFECTED;
         }
-        else if (s.ToUpper() == "OVERRUN")
+        else if (s.ToUpper() == "OFFLINE")
         {
-            state = TownState.OVERRUN;
+            state = TownState.OFFLINE;
         }
     }
 
@@ -50,6 +51,11 @@ public class Town : GameItem
     void Start()
     {
         itemtype = ItemType.BRIDGE;
+
+        animator = GetComponent<Animator>();
+        Debug.Log("anim");
+        Debug.Log(animator == null);
+        animator.SetInteger("TownState", 1);
 
         //Debug.Log("In Town Start");
         
@@ -105,6 +111,22 @@ public class Town : GameItem
     // Update is called once per frame
     void Update()
     {
+        if (state == TownState.HEALTHY)
+        {
+            animator.SetInteger("TownState", 0);
+        }
+        else if (state == TownState.WARNING)
+        {
+            animator.SetInteger("TownState", 1);
+        }
+        else if (state == TownState.INFECTED)
+        {
+            animator.SetInteger("TownState", 2);
+        }
+        else if (state == TownState.OFFLINE)
+        {
+            animator.SetInteger("TownState", 3);
+        }
 
     }
 
