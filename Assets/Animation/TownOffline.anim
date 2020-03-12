@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TownHealthy
+  m_Name: TownOffline
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,9 +19,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: b23100ef06dadc14ab03b22b66e2a17f, type: 3}
+      value: {fileID: 21300000, guid: 37d80058cb594dd4c8f91f1f9086e666, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 5ae5646392b26774fac826ebfc1afb9b, type: 3}
+      value: {fileID: 21300000, guid: 9275b9e877415a54ba9cc239dd35b916, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -41,8 +41,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: b23100ef06dadc14ab03b22b66e2a17f, type: 3}
-    - {fileID: 21300000, guid: 5ae5646392b26774fac826ebfc1afb9b, type: 3}
+    - {fileID: 21300000, guid: 37d80058cb594dd4c8f91f1f9086e666, type: 3}
+    - {fileID: 21300000, guid: 9275b9e877415a54ba9cc239dd35b916, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

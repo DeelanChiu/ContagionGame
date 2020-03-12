@@ -17,8 +17,12 @@ public class Town : GameItem
 {
     public TownState state;
     private Animator animator;
-    private int population = 100;
-    private int infectionProb = 50;
+    public int population = 100;
+    public int infectionProb = 50;
+
+    private GameObject text_go;
+    private Text text;
+    private RectTransform rectTransform;
     
 
     public void setTownState(string s)
@@ -53,9 +57,7 @@ public class Town : GameItem
         itemtype = ItemType.BRIDGE;
 
         animator = GetComponent<Animator>();
-        Debug.Log("anim");
-        Debug.Log(animator == null);
-        animator.SetInteger("TownState", 1);
+        state = TownState.HEALTHY;
 
         //Debug.Log("In Town Start");
         
@@ -65,13 +67,11 @@ public class Town : GameItem
         base.setXY(xpos, ypos);
 
       // Text
-        GameObject text_go;
-        Text text;
-        RectTransform rectTransform;
+
 
         text_go = new GameObject();
         text_go.transform.parent = GameController.instance.canvas_go.transform;
-        text_go.name = "wibble";
+        text_go.name = "TownInfo";
 
         text = text_go.AddComponent<Text>();
         text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
@@ -114,18 +114,22 @@ public class Town : GameItem
         if (state == TownState.HEALTHY)
         {
             animator.SetInteger("TownState", 0);
+            text.text = ""+population;
         }
         else if (state == TownState.WARNING)
         {
             animator.SetInteger("TownState", 1);
+            text.text = population+"\n"+infectionProb;
         }
         else if (state == TownState.INFECTED)
         {
             animator.SetInteger("TownState", 2);
+            text.text = ""+population;
         }
         else if (state == TownState.OFFLINE)
         {
             animator.SetInteger("TownState", 3);
+            text.text = "";
         }
 
     }

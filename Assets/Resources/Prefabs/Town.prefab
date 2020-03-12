@@ -75,7 +75,9 @@ MonoBehaviour:
   x: 0
   y: 0
   go: {fileID: 0}
-  state: 0
+  state: 1
+  population: 100
+  infectionProb: 50
 --- !u!212 &212863454781724722
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -111,7 +113,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: cbc72c5005ab70243a43c4866e6dce45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b23100ef06dadc14ab03b22b66e2a17f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
