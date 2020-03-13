@@ -16,9 +16,13 @@ public enum TownState
 public class Town : GameItem
 {
     public TownState state;
+    private TownState prevState;
     private Animator animator;
     public int population = 100;
     public int infectionProb = 50;
+    private int currInfectionProb;
+
+    List<Town> neighbors;
 
     private GameObject text_go;
     private Text text;
@@ -57,7 +61,14 @@ public class Town : GameItem
         itemtype = ItemType.BRIDGE;
 
         animator = GetComponent<Animator>();
+        prevState  =  TownState.HEALTHY;
         state = TownState.HEALTHY;
+
+        neighbors = new List<Town>();
+        currInfectionProb = infectionProb;
+
+
+        //StartCoroutine("increaseInfectionProb");
 
         //Debug.Log("In Town Start");
         
@@ -77,6 +88,7 @@ public class Town : GameItem
         text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         text.text = population+"\n"+infectionProb;
         text.fontSize = 30;
+        text.color = Color.black;
         text.lineSpacing = 0.9f;
         text.alignment = TextAnchor.MiddleCenter;
 
@@ -108,29 +120,63 @@ public class Town : GameItem
 
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator increaseInfectionProb() 
     {
+        Debug.Log("increasing");
+        while (currInfectionProb < 100) {
+            Debug.Log(""+currInfectionProb);
+            currInfectionProb += 5;
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    void stateChange(){
         if (state == TownState.HEALTHY)
         {
             animator.SetInteger("TownState", 0);
-            text.text = ""+population;
+            currInfectionProb = infectionProb;
+            StopCoroutine("increaseInfectionProb");
         }
         else if (state == TownState.WARNING)
         {
             animator.SetInteger("TownState", 1);
-            text.text = population+"\n"+infectionProb;
+            StartCoroutine("increaseInfectionProb");
         }
         else if (state == TownState.INFECTED)
         {
             animator.SetInteger("TownState", 2);
-            text.text = ""+population;
         }
         else if (state == TownState.OFFLINE)
         {
             animator.SetInteger("TownState", 3);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (prevState != state){
+            prevState = state;
+            stateChange();
+        }
+
+        if (state == TownState.HEALTHY)
+        {
+            text.text = ""+population;
+        }
+        else if (state == TownState.WARNING)
+        {
+            text.text = population+"\n"+currInfectionProb;
+        }
+        else if (state == TownState.INFECTED)
+        {
+            text.text = ""+population;
+        }
+        else if (state == TownState.OFFLINE)
+        {
             text.text = "";
         }
+
 
     }
 

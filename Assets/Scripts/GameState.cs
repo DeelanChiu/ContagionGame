@@ -16,6 +16,8 @@ public class GameState
     public bool EndGame;
     public int level;
 
+    public int infectionPlusInc;
+
     // PlayerPrefs: LoseGame: 0 = in progress, 1 = win game, 2 = stuck, 3 = eaten, 4 = burned
     public GameState(int l, string jsonString)
     {
