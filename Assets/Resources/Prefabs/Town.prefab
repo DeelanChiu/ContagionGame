@@ -77,7 +77,7 @@ MonoBehaviour:
   go: {fileID: 0}
   state: 1
   population: 100
-  infectionProb: 50
+  infectionProb: 5
 --- !u!212 &212863454781724722
 SpriteRenderer:
   m_ObjectHideFlags: 1

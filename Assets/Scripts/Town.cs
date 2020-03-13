@@ -19,10 +19,11 @@ public class Town : GameItem
     private TownState prevState;
     private Animator animator;
     public int population = 100;
-    public int infectionProb = 50;
+    public int infectionProb = 5;
     private int currInfectionProb;
 
     List<Town> neighbors;
+    List<Town> infectedNeighbors;
 
     private GameObject text_go;
     private Text text;
@@ -65,9 +66,10 @@ public class Town : GameItem
         state = TownState.HEALTHY;
 
         neighbors = new List<Town>();
+        infectedNeighbors = new List<Town>();
         currInfectionProb = infectionProb;
 
-
+        
         //StartCoroutine("increaseInfectionProb");
 
         //Debug.Log("In Town Start");
@@ -122,12 +124,28 @@ public class Town : GameItem
 
     IEnumerator increaseInfectionProb() 
     {
-        Debug.Log("increasing");
         while (currInfectionProb < 100) {
+            currInfectionProb += GameController.instance.gamestate.infectionPlusInc;
             Debug.Log(""+currInfectionProb);
-            currInfectionProb += 5;
+            float diceRoll = Random.Range(0.0f, 1.0f);
+            Debug.Log(diceRoll+" "+(float)currInfectionProb / 100f);
+            if (diceRoll <= (float)currInfectionProb / 100f){
+                state = TownState.INFECTED;
+                yield return null;
+            }
             yield return new WaitForSeconds(1);
         }
+    }
+
+    IEnumerator checkOffline() 
+    {
+        yield return new WaitForSeconds(0.2f);
+        while (neighbors.Count > 0) {
+            yield return new WaitForSeconds(0.1f);
+        }
+        state = TownState.OFFLINE;
+        yield return null;
+
     }
 
     void stateChange(){
@@ -145,10 +163,13 @@ public class Town : GameItem
         else if (state == TownState.INFECTED)
         {
             animator.SetInteger("TownState", 2);
+            StopCoroutine("increaseInfectionProb");
+            StartCoroutine("checkOffline");
         }
         else if (state == TownState.OFFLINE)
         {
             animator.SetInteger("TownState", 3);
+            StopCoroutine("checkOffline");
         }
     }
 
@@ -166,7 +187,7 @@ public class Town : GameItem
         }
         else if (state == TownState.WARNING)
         {
-            text.text = population+"\n"+currInfectionProb;
+            text.text = population+"\n  "+currInfectionProb+"%";
         }
         else if (state == TownState.INFECTED)
         {

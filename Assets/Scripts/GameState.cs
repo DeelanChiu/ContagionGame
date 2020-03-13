@@ -70,6 +70,7 @@ public class GameState
         Debug.Log(tn == null);
         */
 
+        infectionPlusInc = 5;
         createTown();
     }
     
