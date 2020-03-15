@@ -75,7 +75,7 @@ MonoBehaviour:
   x: 0
   y: 0
   go: {fileID: 0}
-  state: 1
+  state: 0
   population: 100
   infectionProb: 5
 --- !u!212 &212863454781724722

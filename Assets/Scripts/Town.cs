@@ -148,6 +148,14 @@ public class Town : GameItem
 
     }
 
+    void neighborInfected(Town infectedNeighbor){
+        if (state == TownState.HEALTHY){
+            state = TownState.WARNING;
+        }
+        neighbors.Remove(infectedNeighbor);
+        infectedNeighbors.Add(infectedNeighbor);
+    }
+
     void stateChange(){
         if (state == TownState.HEALTHY)
         {
@@ -165,6 +173,11 @@ public class Town : GameItem
             animator.SetInteger("TownState", 2);
             StopCoroutine("increaseInfectionProb");
             StartCoroutine("checkOffline");
+
+            foreach ( Town neighborTown in neighbors){
+                neighborTown.neighborInfected(this);
+            }
+
         }
         else if (state == TownState.OFFLINE)
         {
