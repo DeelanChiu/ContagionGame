@@ -22,8 +22,8 @@ public class Town : GameItem
     public int infectionProb = 5;
     private int currInfectionProb;
 
-    List<Town> neighbors;
-    List<Town> infectedNeighbors;
+    public List<Town> neighbors;
+    int infectedNum;
 
     private GameObject text_go;
     private Text text;
@@ -55,10 +55,7 @@ public class Town : GameItem
         return state;
     }
 
-
-    // Use this for initialization
-    void Start()
-    {
+    void Awake(){
         itemtype = ItemType.BRIDGE;
 
         animator = GetComponent<Animator>();
@@ -66,8 +63,14 @@ public class Town : GameItem
         state = TownState.HEALTHY;
 
         neighbors = new List<Town>();
-        infectedNeighbors = new List<Town>();
+        infectedNum = 0;
         currInfectionProb = infectionProb;
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        
 
         
         //StartCoroutine("increaseInfectionProb");
@@ -76,8 +79,15 @@ public class Town : GameItem
         
     }
 
+    public void addNeighbor(Town town){
+        neighbors.Add(town);
+    }
+
+
     public void setXY(int xpos, int ypos) {
         base.setXY(xpos, ypos);
+
+        //test code
 
       // Text
 
@@ -140,7 +150,8 @@ public class Town : GameItem
     IEnumerator checkOffline() 
     {
         yield return new WaitForSeconds(0.2f);
-        while (neighbors.Count > 0) {
+        while (neighbors.Count > infectedNum) {
+            //Debug.Log(neighbors.Count);
             yield return new WaitForSeconds(0.1f);
         }
         state = TownState.OFFLINE;
@@ -149,11 +160,13 @@ public class Town : GameItem
     }
 
     void neighborInfected(Town infectedNeighbor){
+        Debug.Log("removing");
         if (state == TownState.HEALTHY){
             state = TownState.WARNING;
         }
-        neighbors.Remove(infectedNeighbor);
-        infectedNeighbors.Add(infectedNeighbor);
+        infectedNum += 1;
+        //neighbors.Remove(infectedNeighbor);
+        //infectedNeighbors.Add(infectedNeighbor);
     }
 
     void stateChange(){
@@ -172,11 +185,12 @@ public class Town : GameItem
         {
             animator.SetInteger("TownState", 2);
             StopCoroutine("increaseInfectionProb");
-            StartCoroutine("checkOffline");
 
             foreach ( Town neighborTown in neighbors){
                 neighborTown.neighborInfected(this);
             }
+
+            StartCoroutine("checkOffline");
 
         }
         else if (state == TownState.OFFLINE)

@@ -71,13 +71,18 @@ public class GameState
         */
 
         infectionPlusInc = 5;
-        createTown();
+        Town tn1 = createTown(1, 1);
+        Town tn2 = createTown(2, 1);
+        tn1.neighbors.Add(tn2);
+        tn2.neighbors.Add(tn1);
+        //tn1.addNeighbor(tn2);
+        //tn2.addNeighbor(tn1);
     }
     
-    private void createTown(/*JSONNode currTown*/)
+    private Town createTown(int coordX, int coordY/*JSONNode currTown*/)
     {
-        int coordX = 0;
-        int coordY = 0;
+        //int coordX = 0;
+        //int coordY = 0;
 
         float x = 0;
         float y = 0;
@@ -109,6 +114,9 @@ public class GameState
         Town tn = town_go.GetComponent<Town>();
         Debug.Log(tn == null);
         tn.setXY(coordX, coordY);
+
+        return tn;
+
     }
     
 
