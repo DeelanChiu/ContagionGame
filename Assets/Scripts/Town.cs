@@ -132,10 +132,11 @@ public class Town : GameItem
 
     }
 
-    IEnumerator increaseInfectionProb() 
+    IEnumerator infectExposure() 
     {
-        while (currInfectionProb < 100) {
-            currInfectionProb += GameController.instance.gamestate.infectionPlusInc;
+        while (infectedNum  > 0) {
+            int infectInc = GameController.instance.gamestate.infectionPlusInc * infectedNum;
+            currInfectionProb += infectInc;
             Debug.Log(""+currInfectionProb);
             float diceRoll = Random.Range(0.0f, 1.0f);
             Debug.Log(diceRoll+" "+(float)currInfectionProb / 100f);
@@ -145,6 +146,10 @@ public class Town : GameItem
             }
             yield return new WaitForSeconds(1);
         }
+
+        state = TownState.HEALTHY; //got rid of infected neighbor(s)
+        yield return null;
+        
     }
 
     IEnumerator checkOffline() 
@@ -160,7 +165,6 @@ public class Town : GameItem
     }
 
     void neighborInfected(Town infectedNeighbor){
-        Debug.Log("removing");
         if (state == TownState.HEALTHY){
             state = TownState.WARNING;
         }
@@ -169,22 +173,29 @@ public class Town : GameItem
         //infectedNeighbors.Add(infectedNeighbor);
     }
 
+    void cutOff(Town neighbor){
+        if (neighbor.state == TownState.INFECTED || neighbor.state == TownState.OFFLINE){
+            infectedNum -= 1;
+        }
+        neighbors.Remove(neighbor);
+    }
+
     void stateChange(){
         if (state == TownState.HEALTHY)
         {
             animator.SetInteger("TownState", 0);
             currInfectionProb = infectionProb;
-            StopCoroutine("increaseInfectionProb");
+            StopCoroutine("infectExposure");
         }
         else if (state == TownState.WARNING)
         {
             animator.SetInteger("TownState", 1);
-            StartCoroutine("increaseInfectionProb");
+            StartCoroutine("infectExposure");
         }
         else if (state == TownState.INFECTED)
         {
             animator.SetInteger("TownState", 2);
-            StopCoroutine("increaseInfectionProb");
+            StopCoroutine("infectExposure");
 
             foreach ( Town neighborTown in neighbors){
                 neighborTown.neighborInfected(this);
