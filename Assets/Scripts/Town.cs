@@ -23,6 +23,7 @@ public class Town : GameItem
     private int currInfectionProb;
 
     public List<Town> neighbors;
+    List <Town> infectedNeighbors;
     int infectedNum;
 
     private GameObject text_go;
@@ -63,7 +64,8 @@ public class Town : GameItem
         state = TownState.HEALTHY;
 
         neighbors = new List<Town>();
-        infectedNum = 0;
+        infectedNeighbors = new List<Town>();
+        //infectedNum = 0;
         currInfectionProb = infectionProb;
     }
 
@@ -134,8 +136,8 @@ public class Town : GameItem
 
     IEnumerator infectExposure() 
     {
-        while (infectedNum  > 0) {
-            int infectInc = GameController.instance.gamestate.infectionPlusInc * infectedNum;
+        while (infectedNeighbors.Count  > 0) {
+            int infectInc = GameController.instance.gamestate.infectionPlusInc * infectedNeighbors.Count;
             currInfectionProb += infectInc;
             Debug.Log(""+currInfectionProb);
             float diceRoll = Random.Range(0.0f, 1.0f);
@@ -155,7 +157,7 @@ public class Town : GameItem
     IEnumerator checkOffline() 
     {
         yield return new WaitForSeconds(0.2f);
-        while (neighbors.Count > infectedNum) {
+        while (neighbors.Count > 0) {
             //Debug.Log(neighbors.Count);
             yield return new WaitForSeconds(0.1f);
         }
@@ -168,9 +170,9 @@ public class Town : GameItem
         if (state == TownState.HEALTHY){
             state = TownState.WARNING;
         }
-        infectedNum += 1;
-        //neighbors.Remove(infectedNeighbor);
-        //infectedNeighbors.Add(infectedNeighbor);
+        //infectedNum += 1;
+        neighbors.Remove(infectedNeighbor);
+        infectedNeighbors.Add(infectedNeighbor);
     }
 
     void cutOff(Town neighbor){
@@ -198,6 +200,9 @@ public class Town : GameItem
             StopCoroutine("infectExposure");
 
             foreach ( Town neighborTown in neighbors){
+                neighborTown.neighborInfected(this);
+            }
+            foreach ( Town neighborTown in infectedNeighbors){
                 neighborTown.neighborInfected(this);
             }
 
