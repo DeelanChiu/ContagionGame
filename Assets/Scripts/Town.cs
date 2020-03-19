@@ -18,8 +18,8 @@ public class Town : GameItem
     public TownState state;
     private TownState prevState;
     private Animator animator;
-    public int population = 100;
-    public int infectionProb = 5;
+    public int population;
+    public int infectionProb;
     private int currInfectionProb;
 
     public List<Town> neighbors;
@@ -66,6 +66,9 @@ public class Town : GameItem
         neighbors = new List<Town>();
         infectedNeighbors = new List<Town>();
         //infectedNum = 0;
+
+        population = 100;
+        infectionProb = 0;
         currInfectionProb = infectionProb;
     }
 
@@ -154,6 +157,23 @@ public class Town : GameItem
         
     }
 
+    IEnumerator evacuatePopulation() 
+    {
+        while (neighbors.Count > 0 && population > 0) {
+            //Debug.Log(neighbors.Count);
+            foreach ( Town neighborTown in neighbors){
+                int evacInc = 10;
+                population -= evacInc;
+                neighborTown.population += evacInc;
+            }
+
+            yield return new WaitForSeconds(1);
+        }
+
+        yield return null;
+
+    }
+
     IEnumerator checkOffline() 
     {
         yield return new WaitForSeconds(0.2f);
@@ -207,11 +227,13 @@ public class Town : GameItem
             }
 
             StartCoroutine("checkOffline");
+            StartCoroutine("evacuatePopulation");
 
         }
         else if (state == TownState.OFFLINE)
         {
             animator.SetInteger("TownState", 3);
+            StopCoroutine("evacuatePopulation");
             StopCoroutine("checkOffline");
         }
     }

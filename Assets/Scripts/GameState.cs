@@ -70,7 +70,7 @@ public class GameState
         Debug.Log(tn == null);
         */
 
-        infectionPlusInc = 5;
+        infectionPlusInc = 2;
         Town tn1 = createTown(1, 1);
         Town tn2 = createTown(2, 1);
         tn1.neighbors.Add(tn2);
