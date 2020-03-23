@@ -57,7 +57,7 @@ public class Town : GameItem
     }
 
     void Awake(){
-        itemtype = ItemType.BRIDGE;
+        itemtype = ItemType.TOWN;
 
         animator = GetComponent<Animator>();
         prevState  =  TownState.HEALTHY;

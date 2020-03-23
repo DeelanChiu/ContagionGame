@@ -77,6 +77,8 @@ public class GameState
         tn2.neighbors.Add(tn1);
         //tn1.addNeighbor(tn2);
         //tn2.addNeighbor(tn1);
+
+        createRoad(1, 1, 2, 1);
     }
     
     private Town createTown(int coordX, int coordY/*JSONNode currTown*/)
@@ -112,11 +114,93 @@ public class GameState
         
         //set XY
         Town tn = town_go.GetComponent<Town>();
-        Debug.Log(tn == null);
         tn.setXY(coordX, coordY);
 
         return tn;
 
+    }
+
+    private Road createRoad(int coordX1, int coordY1, int coordX2, int coordY2){
+
+        //left to right, up to down
+
+        float x = 0;
+        float y = 0;
+
+        if (coordX1 == coordX2) { //vertical
+            if (coordX1 == 0){
+                x = -6.5f;
+            } else if (coordX1 == 1){
+                x = -2.2f;
+            } else if (coordX1 == 2){
+                x = 2.2f;
+            } else if (coordX1 == 3){
+                x = 6.5f;
+            }
+
+            if (coordY1 == 0){
+                y = 1.1f;
+            } else if (coordY1 == 1){
+                y = -3.0f;
+            }
+
+        } else if (coordY1 == coordY2) { //horizontal
+            if (coordX1 == 0){
+                x = -4.4f;
+            } else if (coordX1 == 1){
+                x = 0.2f;
+            } else if (coordX1 == 2){
+                x = 4.5f;
+            }
+
+            if (coordY1 == 0){
+                y = 3.3f;
+            } else if (coordY1 == 1){
+                y = -0.9f;
+            } else if (coordY1 == 2){
+                y = -5.2f;
+            }
+
+
+        } else {
+            if (coordY1 + 1 == coordY2){ //diagdown
+
+                if (coordY1 == 0){
+                    y = 1.1f;
+                } else if (coordY1 == 1){
+                    y = -3.0f;
+                }
+
+            } else if (coordY1 - 1 == coordY2){ //diagup
+
+                if (coordY1 == 1){
+                    y = 1.1f;
+                } else if (coordY1 == 2){
+                    y = -3.0f;
+                }
+
+            }
+
+            if (coordX1 == 0){
+                x = -4.4f;
+            } else if (coordX1 == 1){
+                x = 0.2f;
+            } else if (coordX1 == 2){
+                x = 4.5f;
+            }
+
+        } 
+
+        string prefabName = "Prefabs/Road";
+        Object road = Resources.Load<GameObject>(prefabName);
+        Vector3 pos = new Vector3(x, y, 100);
+        GameObject road_go = (GameObject)Object.Instantiate(road, pos, Quaternion.identity);
+        
+        //set XY
+        Road rd = road_go.GetComponent<Road>();
+        //rd.setXY(coordX, coordY);
+
+        return rd;
     }
     
 

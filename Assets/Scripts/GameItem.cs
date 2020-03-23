@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ItemType {
     TOWN,
-    BRIDGE
+    ROAD
 }
 
 public abstract class GameItem : MonoBehaviour {
