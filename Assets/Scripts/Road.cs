@@ -9,11 +9,12 @@ using UnityEngine.UI;
 
 public class Road : GameItem
 {
+    
 
     private Animator animator;
     void Awake(){
         itemtype = ItemType.ROAD;
-        
+
     }
 
     // Use this for initialization

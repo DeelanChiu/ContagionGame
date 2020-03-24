@@ -18,6 +18,8 @@ public class GameState
 
     public int infectionPlusInc;
 
+    Town[,] matrix;
+
     // PlayerPrefs: LoseGame: 0 = in progress, 1 = win game, 2 = stuck, 3 = eaten, 4 = burned
     public GameState(int l, string jsonString)
     {
@@ -71,8 +73,13 @@ public class GameState
         */
 
         infectionPlusInc = 2;
+
+        matrix = new Town[4,3];
+
         Town tn1 = createTown(1, 1);
+        matrix[1, 1] = tn1;
         Town tn2 = createTown(2, 1);
+        matrix[2, 1] = tn2;
         tn1.neighbors.Add(tn2);
         tn2.neighbors.Add(tn1);
         //tn1.addNeighbor(tn2);
@@ -121,8 +128,10 @@ public class GameState
     }
 
     private Road createRoad(int coordX1, int coordY1, int coordX2, int coordY2){
+        Town tnA = matrix[coordX1, coordY1];
+        Town tnB = matrix[coordX2, coordY2];
 
-        //left to right, up to down
+        //left to right, up to down;
 
         float x = 0;
         float y = 0;
