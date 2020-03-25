@@ -5,15 +5,23 @@ using SimpleJSON;
 using UnityEditor;
 using UnityEngine.UI;
 
-
+public enum RoadType
+{
+    HORIZONTAL,
+    VERTICAL,
+    DIAGUP,
+    DIAGDOWN
+}
 
 public class Road : GameItem
 {
     
+    public RoadType rdtype;
 
     private Animator animator;
     void Awake(){
         itemtype = ItemType.ROAD;
+        //animator = GetComponent<Animator>();
 
     }
 
@@ -41,6 +49,17 @@ public class Road : GameItem
     // Update is called once per frame
     void Update()
     {
+        /*
+        if (rdtype == RoadType.HORIZONTAL){
+            animator.SetInteger("RoadType", 0);
+        } else if (rdtype == RoadType.VERTICAL){
+            animator.SetInteger("RoadType", 1);
+        } else if (rdtype == RoadType.DIAGUP) {
+            animator.SetInteger("RoadType", 2);
+        } else if (rdtype == RoadType.DIAGDOWN) {
+            animator.SetInteger("RoadType", 3);
+        }
+        */
         
 
     }

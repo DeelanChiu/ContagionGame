@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4455639556890002}
   - component: {fileID: 212233073942219190}
+  - component: {fileID: 114428358839186188}
   m_Layer: 0
   m_Name: horizontalRoad
   m_TagString: Untagged
@@ -40,6 +41,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114428358839186188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1085630942353768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af3e9e623005ae4b9cc6462c4bd8fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemtype: 0
+  x: 0
+  y: 0
+  go: {fileID: 0}
+  rdtype: 0
 --- !u!212 &212233073942219190
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -74,7 +91,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2566a124cc98a134a9a541f639b134fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

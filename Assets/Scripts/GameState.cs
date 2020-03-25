@@ -76,15 +76,19 @@ public class GameState
 
         matrix = new Town[4,3];
 
+
         Town tn1 = createTown(1, 1);
         matrix[1, 1] = tn1;
-        Town tn2 = createTown(2, 1);
-        matrix[2, 1] = tn2;
+        Town tn2 = createTown(1, 2);
+        matrix[1, 2] = tn2;
+        Town tn3 = createTown(2, 1);
+        matrix[2, 1] = tn3;
         //tn1.neighbors.Add(tn2);
         //tn2.neighbors.Add(tn1);
         //tn1.addNeighbor(tn2);
         //tn2.addNeighbor(tn1);
 
+        createRoad(1, 1, 1, 2);
         createRoad(1, 1, 2, 1);
     }
     
@@ -131,6 +135,9 @@ public class GameState
         Town tnA = matrix[coordX1, coordY1];
         Town tnB = matrix[coordX2, coordY2];
 
+        //RoadType rt = RoadType.HORIZONTAL;
+        string prefabName = "Prefabs/";
+
         tnA.neighbors.Add(tnB);
         tnB.neighbors.Add(tnA);
 
@@ -140,6 +147,8 @@ public class GameState
         float y = 0;
 
         if (coordX1 == coordX2) { //vertical
+            //rt = RoadType.VERTICAL;
+            prefabName += "vertical";
             if (coordX1 == 0){
                 x = -6.5f;
             } else if (coordX1 == 1){
@@ -157,6 +166,8 @@ public class GameState
             }
 
         } else if (coordY1 == coordY2) { //horizontal
+            //rt = RoadType.HORIZONTAL;
+            prefabName += "horizontal";
             if (coordX1 == 0){
                 x = -4.4f;
             } else if (coordX1 == 1){
@@ -176,6 +187,8 @@ public class GameState
 
         } else {
             if (coordY1 + 1 == coordY2){ //diagdown
+                //rt = RoadType.DIAGDOWN;
+                prefabName += "diagdown";
 
                 if (coordY1 == 0){
                     y = 1.1f;
@@ -184,6 +197,8 @@ public class GameState
                 }
 
             } else if (coordY1 - 1 == coordY2){ //diagup
+                //rt = RoadType.DIAGUP;
+                prefabName += "diagup";
 
                 if (coordY1 == 1){
                     y = 1.1f;
@@ -203,14 +218,15 @@ public class GameState
 
         } 
 
-        string prefabName = "Prefabs/Road";
+        prefabName += "Road";
         Object road = Resources.Load<GameObject>(prefabName);
         Vector3 pos = new Vector3(x, y, 100);
         GameObject road_go = (GameObject)Object.Instantiate(road, pos, Quaternion.identity);
         
         //set XY
         Road rd = road_go.GetComponent<Road>();
-        //rd.setXY(coordX, coordY);
+        //rd.rdtype = rt;
+        rd.setXY(coordX1, coordY1);
 
         return rd;
     }
