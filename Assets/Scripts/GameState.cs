@@ -80,8 +80,8 @@ public class GameState
         matrix[1, 1] = tn1;
         Town tn2 = createTown(2, 1);
         matrix[2, 1] = tn2;
-        tn1.neighbors.Add(tn2);
-        tn2.neighbors.Add(tn1);
+        //tn1.neighbors.Add(tn2);
+        //tn2.neighbors.Add(tn1);
         //tn1.addNeighbor(tn2);
         //tn2.addNeighbor(tn1);
 
@@ -130,6 +130,9 @@ public class GameState
     private Road createRoad(int coordX1, int coordY1, int coordX2, int coordY2){
         Town tnA = matrix[coordX1, coordY1];
         Town tnB = matrix[coordX2, coordY2];
+
+        tnA.neighbors.Add(tnB);
+        tnB.neighbors.Add(tnA);
 
         //left to right, up to down;
 
