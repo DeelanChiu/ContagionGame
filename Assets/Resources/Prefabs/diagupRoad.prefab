@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4009998868205080}
   - component: {fileID: 212858996620589848}
   - component: {fileID: 114112814249543874}
+  - component: {fileID: 60084076571284886}
   m_Layer: 0
   m_Name: diagupRoad
   m_TagString: Untagged
@@ -41,6 +42,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &60084076571284886
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1238007565605662}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.5, y: 3.5}
+    newSize: {x: 2.2, y: 2.21}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.13, y: 1.75}
+      - {x: 0, y: 0.63}
+      - {x: -1.75, y: -1.14}
+      - {x: -1.75, y: -1.75}
+      - {x: -1.11, y: -1.75}
+      - {x: -0.099999994, y: -0.74}
+      - {x: 1.75, y: 1.12}
+      - {x: 1.75, y: 1.75}
 --- !u!114 &114112814249543874
 MonoBehaviour:
   m_ObjectHideFlags: 1

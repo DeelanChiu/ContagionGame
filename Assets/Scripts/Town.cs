@@ -142,9 +142,9 @@ public class Town : GameItem
         while (infectedNeighbors.Count  > 0) {
             int infectInc = GameController.instance.gamestate.infectionPlusInc * infectedNeighbors.Count;
             currInfectionProb += infectInc;
-            Debug.Log(""+currInfectionProb);
+            //Debug.Log(""+currInfectionProb);
             float diceRoll = Random.Range(0.0f, 1.0f);
-            Debug.Log(diceRoll+" "+(float)currInfectionProb / 100f);
+            //Debug.Log(diceRoll+" "+(float)currInfectionProb / 100f);
             if (diceRoll <= (float)currInfectionProb / 100f){
                 state = TownState.INFECTED;
                 yield return null;
@@ -195,10 +195,13 @@ public class Town : GameItem
         infectedNeighbors.Add(infectedNeighbor);
     }
 
-    void cutOff(Town neighbor){
+    public void cutOff(Town neighbor){
+        /*
         if (neighbor.state == TownState.INFECTED || neighbor.state == TownState.OFFLINE){
             infectedNum -= 1;
         }
+        */
+        infectedNeighbors.Remove(neighbor);
         neighbors.Remove(neighbor);
     }
 

@@ -5,20 +5,15 @@ using SimpleJSON;
 using UnityEditor;
 using UnityEngine.UI;
 
-public enum RoadType
-{
-    HORIZONTAL,
-    VERTICAL,
-    DIAGUP,
-    DIAGDOWN
-}
-
 public class Road : GameItem
 {
     
-    public RoadType rdtype;
+    public Town town1;
+    public Town town2;
 
     private Animator animator;
+
+
     void Awake(){
         itemtype = ItemType.ROAD;
         //animator = GetComponent<Animator>();
@@ -64,8 +59,16 @@ public class Road : GameItem
 
     }
 
+    void separate() {
+
+    }
+
     void OnMouseDown()
     {
+        Debug.Log("Pressed");
+
+        town1.cutOff(town2);
+        town2.cutOff(town1);
 
     }
 

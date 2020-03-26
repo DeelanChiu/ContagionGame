@@ -78,11 +78,8 @@ public class GameState
 
 
         Town tn1 = createTown(1, 1);
-        matrix[1, 1] = tn1;
         Town tn2 = createTown(1, 2);
-        matrix[1, 2] = tn2;
         Town tn3 = createTown(2, 1);
-        matrix[2, 1] = tn3;
         //tn1.neighbors.Add(tn2);
         //tn2.neighbors.Add(tn1);
         //tn1.addNeighbor(tn2);
@@ -126,6 +123,8 @@ public class GameState
         //set XY
         Town tn = town_go.GetComponent<Town>();
         tn.setXY(coordX, coordY);
+
+        matrix[coordX, coordY] = tn;
 
         return tn;
 
@@ -227,6 +226,8 @@ public class GameState
         Road rd = road_go.GetComponent<Road>();
         //rd.rdtype = rt;
         rd.setXY(coordX1, coordY1);
+        rd.town1 = tnA;
+        rd.town2 = tnB;
 
         return rd;
     }
