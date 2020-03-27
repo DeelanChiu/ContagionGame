@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: DiagUpRoad
+  m_Controller: {fileID: 9100000, guid: fecf669cf2888ed47be5e5db3dda326c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: bab27c3c8d62ec54ca96b60e24d4c13c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 49e0ab2a16f6a704687e417401825aae, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 941541b1c4b4bc84a86ee0c77b2dd619, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4d60110e150e7cf42a85d3f7c6dfeb52, type: 2}

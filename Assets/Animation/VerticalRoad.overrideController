@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: VerticalRoad
+  m_Controller: {fileID: 9100000, guid: fecf669cf2888ed47be5e5db3dda326c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: bab27c3c8d62ec54ca96b60e24d4c13c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3a1d8fd39722f9b46b1bfc104a75d76a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 941541b1c4b4bc84a86ee0c77b2dd619, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2ad0d39775233cf4f8a38c2178432240, type: 2}

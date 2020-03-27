@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212858996620589848}
   - component: {fileID: 114112814249543874}
   - component: {fileID: 60084076571284886}
+  - component: {fileID: 95011224218491470}
   m_Layer: 0
   m_Name: diagupRoad
   m_TagString: Untagged
@@ -74,6 +75,24 @@ PolygonCollider2D:
       - {x: -0.099999994, y: -0.74}
       - {x: 1.75, y: 1.12}
       - {x: 1.75, y: 1.75}
+--- !u!95 &95011224218491470
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1238007565605662}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 24a4f248577e23543885fa0eab120c0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114112814249543874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,7 +108,8 @@ MonoBehaviour:
   x: 0
   y: 0
   go: {fileID: 0}
-  rdtype: 0
+  town1: {fileID: 0}
+  town2: {fileID: 0}
 --- !u!212 &212858996620589848
 SpriteRenderer:
   m_ObjectHideFlags: 1

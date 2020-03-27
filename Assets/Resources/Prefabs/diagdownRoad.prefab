@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212857188327490500}
   - component: {fileID: 114981715193947894}
   - component: {fileID: 60681892786444052}
+  - component: {fileID: 95930490193006966}
   m_Layer: 0
   m_Name: diagdownRoad
   m_TagString: Untagged
@@ -72,6 +73,24 @@ PolygonCollider2D:
       - {x: 1.75, y: -1.75}
       - {x: 1.75, y: -1.12}
       - {x: -1.12, y: 1.75}
+--- !u!95 &95930490193006966
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1406220620786028}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 6ecf0e8cccee0d84bb76a6490b12da16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114981715193947894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,7 +106,8 @@ MonoBehaviour:
   x: 0
   y: 0
   go: {fileID: 0}
-  rdtype: 0
+  town1: {fileID: 0}
+  town2: {fileID: 0}
 --- !u!212 &212857188327490500
 SpriteRenderer:
   m_ObjectHideFlags: 1

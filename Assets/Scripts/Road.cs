@@ -16,7 +16,7 @@ public class Road : GameItem
 
     void Awake(){
         itemtype = ItemType.ROAD;
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
     }
 
@@ -69,6 +69,9 @@ public class Road : GameItem
 
         town1.cutOff(town2);
         town2.cutOff(town1);
+
+        animator.SetBool("Blocked", true);
+        
 
     }
 
