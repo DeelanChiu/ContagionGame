@@ -18,6 +18,8 @@ public class GameState
 
     public int infectionPlusInc;
 
+    public BlocksLeft blksLeft;
+
     Town[,] matrix;
 
     // PlayerPrefs: LoseGame: 0 = in progress, 1 = win game, 2 = stuck, 3 = eaten, 4 = burned
@@ -87,6 +89,8 @@ public class GameState
 
         createRoad(1, 1, 1, 2);
         createRoad(1, 1, 2, 1);
+        blksLeft = showBlocksLeft(1);
+        
     }
     
     private Town createTown(int coordX, int coordY/*JSONNode currTown*/)
@@ -230,6 +234,19 @@ public class GameState
         rd.town2 = tnB;
 
         return rd;
+    }
+
+    BlocksLeft showBlocksLeft (int blocks){
+        string prefabName = "Prefabs/BlocksLeft";
+        Object blocksleft = Resources.Load<GameObject>(prefabName);
+        Vector3 pos = new Vector3(6.4f, 5.4f, 100);
+        GameObject blocksleft_go = (GameObject)Object.Instantiate(blocksleft, pos, Quaternion.identity);
+        
+        //set XY
+        BlocksLeft blc = blocksleft_go.GetComponent<BlocksLeft>();
+        blc.setBlocksLeft(blocks);
+
+        return blc;
     }
     
 

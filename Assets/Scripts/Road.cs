@@ -67,11 +67,12 @@ public class Road : GameItem
     {
         Debug.Log("Pressed");
 
-        town1.cutOff(town2);
-        town2.cutOff(town1);
+        if (GameController.instance.gamestate.blksLeft.useBlock()){
+            town1.cutOff(town2);
+            town2.cutOff(town1);
 
-        animator.SetBool("Blocked", true);
-        
+            animator.SetBool("Blocked", true);
+        }      
 
     }
 
