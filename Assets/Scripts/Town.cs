@@ -238,6 +238,8 @@ public class Town : GameItem
             animator.SetInteger("TownState", 3);
             StopCoroutine("evacuatePopulation");
             StopCoroutine("checkOffline");
+            GameController.instance.gamestate.casualties += population;  //remaining people died in this town
+            Debug.Log(GameController.instance.gamestate.casualties);
         }
     }
 
