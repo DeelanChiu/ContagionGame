@@ -20,7 +20,8 @@ public class GameState
 
     public BlocksLeft blksLeft;
 
-    public int casualties;
+    public int currPopulation;
+    public int totalPopulation;
 
     Town[,] matrix;
 
@@ -77,14 +78,15 @@ public class GameState
         */
 
         infectionPlusInc = 2;
-        casualties = 0;
+        totalPopulation = 0;
+        currPopulation = 0;
 
         matrix = new Town[4,3];
 
 
-        Town tn1 = createTown(1, 1);
-        Town tn2 = createTown(1, 2);
-        Town tn3 = createTown(2, 1);
+        Town tn1 = createTown(1, 1, 100);
+        Town tn2 = createTown(1, 2, 80);
+        Town tn3 = createTown(2, 1, 50);
         //tn1.neighbors.Add(tn2);
         //tn2.neighbors.Add(tn1);
         //tn1.addNeighbor(tn2);
@@ -93,11 +95,15 @@ public class GameState
         createRoad(1, 1, 1, 2);
         createRoad(1, 1, 2, 1);
         blksLeft = showBlocksLeft(1);
+        showPopAlive();
         
     }
     
-    private Town createTown(int coordX, int coordY/*JSONNode currTown*/)
+    private Town createTown(int coordX, int coordY, int townPop/*JSONNode currTown*/)
     {
+        totalPopulation += townPop;
+        currPopulation += townPop;
+
         //int coordX = 0;
         //int coordY = 0;
 
@@ -130,6 +136,7 @@ public class GameState
         //set XY
         Town tn = town_go.GetComponent<Town>();
         tn.setXY(coordX, coordY);
+        tn.population = townPop;
 
         matrix[coordX, coordY] = tn;
 
@@ -250,6 +257,18 @@ public class GameState
         blc.setBlocksLeft(blocks);
 
         return blc;
+    }
+
+    PopAlive showPopAlive(){
+        string prefabName = "Prefabs/PopAlive";
+        Object popAlive = Resources.Load<GameObject>(prefabName);
+        Vector3 pos = new Vector3(3.0f, 5.4f, 100);
+        GameObject popalive_go = (GameObject)Object.Instantiate(popAlive, pos, Quaternion.identity);
+        
+        //set XY
+        PopAlive pa = popalive_go.GetComponent<PopAlive>();
+
+        return pa;
     }
     
 
