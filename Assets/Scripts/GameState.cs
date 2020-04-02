@@ -84,9 +84,9 @@ public class GameState
         matrix = new Town[4,3];
 
 
-        Town tn1 = createTown(1, 1, 100);
-        Town tn2 = createTown(1, 2, 80);
-        Town tn3 = createTown(2, 1, 50);
+        Town tn1 = createTown(1, 1, 100, 0f);
+        Town tn2 = createTown(1, 2, 80, 5.0f);
+        Town tn3 = createTown(2, 1, 50, 0f);
         //tn1.neighbors.Add(tn2);
         //tn2.neighbors.Add(tn1);
         //tn1.addNeighbor(tn2);
@@ -99,7 +99,7 @@ public class GameState
         
     }
     
-    private Town createTown(int coordX, int coordY, int townPop/*JSONNode currTown*/)
+    private Town createTown(int coordX, int coordY, int townPop, float infectTime/*JSONNode currTown*/)
     {
         totalPopulation += townPop;
         currPopulation += townPop;
@@ -137,6 +137,10 @@ public class GameState
         Town tn = town_go.GetComponent<Town>();
         tn.setXY(coordX, coordY);
         tn.population = townPop;
+
+        if (infectTime > 0f){
+            tn.setInfectTimer(infectTime);
+        }
 
         matrix[coordX, coordY] = tn;
 

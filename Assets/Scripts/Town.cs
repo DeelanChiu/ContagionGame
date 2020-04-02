@@ -29,6 +29,8 @@ public class Town : GameItem
     private GameObject text_go;
     private Text text;
     private RectTransform rectTransform;
+
+    private float infectTime;
     
 
     public void setTownState(string s)
@@ -203,6 +205,18 @@ public class Town : GameItem
         */
         infectedNeighbors.Remove(neighbor);
         neighbors.Remove(neighbor);
+    }
+
+    
+    IEnumerator infectTimer() 
+    {
+        yield return new WaitForSeconds(infectTime);
+        state = TownState.INFECTED;
+    }
+
+    public void setInfectTimer(float time){
+        infectTime = time;
+        StartCoroutine("infectTimer");
     }
 
     void stateChange(){
