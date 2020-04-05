@@ -14,6 +14,7 @@ public class GameState
 
     public bool LoseGame;
     public bool EndGame;
+    public bool levelEnd;
     public int level;
 
     public int infectionPlusInc;
@@ -22,6 +23,10 @@ public class GameState
 
     public int currPopulation;
     public int totalPopulation;
+
+    public int pendingTimers;
+
+    public int infectedTowns;
 
     Town[,] matrix;
 
@@ -77,6 +82,12 @@ public class GameState
         Debug.Log(tn == null);
         */
 
+        EndGame = false;
+        levelEnd = false;
+        
+        pendingTimers = 0;
+        infectedTowns = 0;
+
         infectionPlusInc = 2;
         totalPopulation = 0;
         currPopulation = 0;
@@ -87,13 +98,10 @@ public class GameState
         Town tn1 = createTown(1, 1, 100, 0f);
         Town tn2 = createTown(1, 2, 80, 5.0f);
         Town tn3 = createTown(2, 1, 50, 0f);
-        //tn1.neighbors.Add(tn2);
-        //tn2.neighbors.Add(tn1);
-        //tn1.addNeighbor(tn2);
-        //tn2.addNeighbor(tn1);
 
         createRoad(1, 1, 1, 2);
         createRoad(1, 1, 2, 1);
+        
         blksLeft = showBlocksLeft(1);
         showPopAlive();
         
@@ -139,6 +147,7 @@ public class GameState
         tn.population = townPop;
 
         if (infectTime > 0f){
+            pendingTimers += 1;
             tn.setInfectTimer(infectTime);
         }
 
@@ -273,6 +282,21 @@ public class GameState
         PopAlive pa = popalive_go.GetComponent<PopAlive>();
 
         return pa;
+    }
+
+    public WinLoseScreen setupWinLoseScreen(){
+        levelEnd = true;
+        string prefabName = "Prefabs/winScreen";
+        Object winScreen = Resources.Load<GameObject>(prefabName);
+        Vector3 pos = new Vector3(0f, -0.6f, 100);
+        GameObject winScreen_go = (GameObject)Object.Instantiate(winScreen, pos, Quaternion.identity);
+        
+        //set XY
+        WinLoseScreen wls = winScreen_go.GetComponent<WinLoseScreen>();
+        //winScreen_go.SetActive(false);
+        //wls.winScreen_go = winScreen_go;
+
+        return wls;
     }
     
 

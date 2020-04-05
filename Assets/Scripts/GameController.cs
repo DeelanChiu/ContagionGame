@@ -69,6 +69,9 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         //Debug.Log(LoggingManager.instance.playerAB);
+        if (gamestate.EndGame && !gamestate.levelEnd){
+            gamestate.setupWinLoseScreen();
+        }
     }
 
     public void LoadLevel(int level) {

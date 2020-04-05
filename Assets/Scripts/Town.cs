@@ -211,11 +211,13 @@ public class Town : GameItem
     IEnumerator infectTimer() 
     {
         yield return new WaitForSeconds(infectTime);
+        GameController.instance.gamestate.pendingTimers -= 1;
         state = TownState.INFECTED;
     }
 
     public void setInfectTimer(float time){
         infectTime = time;
+        //GameController.instance.gamestate.pendingTimers += 1;
         StartCoroutine("infectTimer");
     }
 
@@ -246,6 +248,8 @@ public class Town : GameItem
             StartCoroutine("checkOffline");
             StartCoroutine("evacuatePopulation");
 
+            GameController.instance.gamestate.infectedTowns += 1;
+
         }
         else if (state == TownState.OFFLINE)
         {
@@ -254,6 +258,11 @@ public class Town : GameItem
             StopCoroutine("checkOffline");
             GameController.instance.gamestate.currPopulation -= population;
             Debug.Log(GameController.instance.gamestate.currPopulation);
+
+            GameController.instance.gamestate.infectedTowns -= 1;
+            GameController.instance.gamestate.EndGame = 
+                GameController.instance.gamestate.infectedTowns == 0 && GameController.instance.gamestate.pendingTimers == 0;
+            Debug.Log(GameController.instance.gamestate.EndGame);
         }
     }
 
