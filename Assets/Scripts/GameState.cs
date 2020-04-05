@@ -12,7 +12,7 @@ public class GameState
     private int cols;
     private int rows;
 
-    public bool LoseGame;
+    public bool levelPass;
     public bool EndGame;
     public bool levelEnd;
     public int level;
@@ -21,6 +21,7 @@ public class GameState
 
     public BlocksLeft blksLeft;
 
+    public float requiredSurvivalRate;
     public int currPopulation;
     public int totalPopulation;
 
@@ -82,13 +83,15 @@ public class GameState
         Debug.Log(tn == null);
         */
 
+        levelPass = false;
         EndGame = false;
         levelEnd = false;
-        
+
         pendingTimers = 0;
         infectedTowns = 0;
 
         infectionPlusInc = 2;
+        requiredSurvivalRate = 0.5f;
         totalPopulation = 0;
         currPopulation = 0;
 
@@ -286,7 +289,13 @@ public class GameState
 
     public WinLoseScreen setupWinLoseScreen(){
         levelEnd = true;
-        string prefabName = "Prefabs/winScreen";
+        string prefabName = "Prefabs/";
+        if ((float)currPopulation/(float)totalPopulation >= requiredSurvivalRate){
+            prefabName += "winScreen";
+            levelPass = true;
+        } else {
+            prefabName += "loseScreen";
+        }
         Object winScreen = Resources.Load<GameObject>(prefabName);
         Vector3 pos = new Vector3(0f, -0.6f, 100);
         GameObject winScreen_go = (GameObject)Object.Instantiate(winScreen, pos, Quaternion.identity);
