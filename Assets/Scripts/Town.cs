@@ -16,6 +16,8 @@ public enum TownState
 public class Town : GameItem
 {
     public GameObject canvas_go;
+    private Canvas townCanvas;
+    private GameObject townCanvas_go;
     public TownState state;
     private TownState prevState;
     private Animator animator;
@@ -113,6 +115,42 @@ public class Town : GameItem
         population = 100;
         infectionProb = 0;
         currInfectionProb = infectionProb;
+
+        townCanvas_go = new GameObject();
+        townCanvas_go.name = "townCanvas";
+        townCanvas_go.AddComponent<Canvas>();
+        townCanvas_go.transform.parent = this.transform;
+
+        townCanvas = townCanvas_go.GetComponent<Canvas>();
+        //townCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        //townCanvas.worldCamera = Camera.main.GetComponent<Camera>();;
+        townCanvas.sortingOrder = 3;
+        townCanvas_go.AddComponent<CanvasScaler>();
+        townCanvas_go.AddComponent<GraphicRaycaster>();
+
+        RectTransform townCanvasRect = townCanvas_go.GetComponent<RectTransform>();
+        townCanvasRect.localPosition = new Vector3(0, -0.75f, 0);
+        townCanvasRect.sizeDelta = new Vector2(3f, 1f);
+        
+        text_go = new GameObject();
+        text_go.transform.parent = townCanvas_go.transform;
+        text_go.name = "TownInfo";
+
+        text = text_go.AddComponent<Text>();
+        text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        text.text = population+"\n"+infectionProb;
+        text.fontSize = 30;
+        text.color = Color.black;
+        text.lineSpacing = 0.9f;
+        text.alignment = TextAnchor.MiddleCenter;
+
+        // Text position
+        rectTransform = text.GetComponent<RectTransform>();
+        rectTransform.localPosition = new Vector3(0, 0, 0);
+        rectTransform.sizeDelta = new Vector2(400, 200);
+        rectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);
+        
+
     }
 
     // Use this for initialization
@@ -128,15 +166,6 @@ public class Town : GameItem
 
     public void addNeighbor(Town town){
         neighbors.Add(town);
-    }
-
-
-    public void setXY(int xpos, int ypos) {
-        base.setXY(xpos, ypos);
-
-        placeText();
-
-        //test code
     }
 
     IEnumerator infectExposure() 

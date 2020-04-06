@@ -45,15 +45,6 @@ public class PopAlive : GameItem
         
     }
 
-    public void setXY(int xpos, int ypos) {
-        base.setXY(xpos, ypos);
-
-        //test code
-
-      // Text
-
-    }
-
     // Update is called once per frame
     void Update()
     {
