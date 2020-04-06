@@ -220,6 +220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   canvas_go: {fileID: 0}
+  resultCanvas: {fileID: 0}
+  resultCanvas_go: {fileID: 0}
   goToLevel: 0
   currLevel: 0
   reachedLevel: 0
