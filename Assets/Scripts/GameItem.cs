@@ -9,8 +9,8 @@ public enum ItemType {
 
 public abstract class GameItem : MonoBehaviour {
     public ItemType itemtype;
-    public int x;
-    public int y;
+    public int xpos;
+    public int ypos;
 
     public GameObject go;
 
@@ -18,10 +18,6 @@ public abstract class GameItem : MonoBehaviour {
         return itemtype;
     }
 
-    public int[] getLoc() {
-        int[] loc = {this.x, this.y};
-        return loc;
-    }
 /*
     public void changeLoc(int xpos, int ypos) {
 
@@ -32,8 +28,8 @@ public abstract class GameItem : MonoBehaviour {
     }
 */
     public void setXY(int xpos, int ypos) {
-      this.x = xpos;
-      this.y = ypos;
+      this.xpos = xpos;
+      this.ypos = ypos;
     }
     public void reset() {
 

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class WinLoseScreen : GameItem
 {
     
-
+    public GameObject canvas_go;
     private Animator animator;
 
     public GameObject winScreen_go;
@@ -21,8 +21,8 @@ public class WinLoseScreen : GameItem
     void Awake(){
 
         text_go = new GameObject();
-        text_go.transform.parent = GameController.instance.canvas_go.transform;
-        text_go.name = "BlocksLeftInfo";
+        text_go.transform.parent = GameController.instance.gamestate.canvas_go.transform;
+        text_go.name = "WinLoseInfo";
 
         text = text_go.AddComponent<Text>();
         text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
@@ -59,7 +59,7 @@ public class WinLoseScreen : GameItem
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnMouseDown()

@@ -12,9 +12,6 @@ public class GameController : MonoBehaviour
 
     public GameState gamestate;
 
-    public Canvas canvas;
-    public GameObject canvas_go;
-
     public int goToLevel;
 
     public int currLevel;
@@ -32,18 +29,6 @@ public class GameController : MonoBehaviour
     {
         reachedLevel = 1;
         currLevel = 1;
-
-        // Canvas
-        canvas_go = new GameObject();
-        canvas_go.name = "Canvas";
-        canvas_go.AddComponent<Canvas>();
-
-        canvas = canvas_go.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceCamera;
-        canvas.worldCamera = Camera.main.GetComponent<Camera>();;
-        canvas.sortingOrder = 2;
-        canvas_go.AddComponent<CanvasScaler>();
-        canvas_go.AddComponent<GraphicRaycaster>();
 
         string scenename = SceneManager.GetActiveScene().name;
         if (scenename.Substring(0, 5).Equals("Level")) {
@@ -69,9 +54,9 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         //Debug.Log(LoggingManager.instance.playerAB);
-        if (gamestate.EndGame && !gamestate.levelEnd){
+        /*if (gamestate.EndGame && !gamestate.levelEnd){
             gamestate.setupWinLoseScreen();
-        }
+        }*/
     }
 
     public void LoadLevel(int level) {

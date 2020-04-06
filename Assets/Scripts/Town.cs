@@ -15,6 +15,7 @@ public enum TownState
 
 public class Town : GameItem
 {
+    public GameObject canvas_go;
     public TownState state;
     private TownState prevState;
     private Animator animator;
@@ -58,49 +59,9 @@ public class Town : GameItem
         return state;
     }
 
-    void Awake(){
-        itemtype = ItemType.TOWN;
-
-        animator = GetComponent<Animator>();
-        prevState  =  TownState.HEALTHY;
-        state = TownState.HEALTHY;
-
-        neighbors = new List<Town>();
-        infectedNeighbors = new List<Town>();
-        //infectedNum = 0;
-
-        population = 100;
-        infectionProb = 0;
-        currInfectionProb = infectionProb;
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        
-
-        
-        //StartCoroutine("increaseInfectionProb");
-
-        //Debug.Log("In Town Start");
-        
-    }
-
-    public void addNeighbor(Town town){
-        neighbors.Add(town);
-    }
-
-
-    public void setXY(int xpos, int ypos) {
-        base.setXY(xpos, ypos);
-
-        //test code
-
-      // Text
-
-
+    public void placeText(){
         text_go = new GameObject();
-        text_go.transform.parent = GameController.instance.canvas_go.transform;
+        text_go.transform.parent = canvas_go.transform;
         text_go.name = "TownInfo";
 
         text = text_go.AddComponent<Text>();
@@ -136,7 +97,46 @@ public class Town : GameItem
         rectTransform.localPosition = new Vector3(x, y, 0);
         rectTransform.sizeDelta = new Vector2(400, 200);
         rectTransform.localScale = new Vector3(1f,1f,1f);
+    }
 
+    void Awake(){
+        itemtype = ItemType.TOWN;
+
+        animator = GetComponent<Animator>();
+        prevState  =  TownState.HEALTHY;
+        state = TownState.HEALTHY;
+
+        neighbors = new List<Town>();
+        infectedNeighbors = new List<Town>();
+        //infectedNum = 0;
+
+        population = 100;
+        infectionProb = 0;
+        currInfectionProb = infectionProb;
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        
+        //StartCoroutine("increaseInfectionProb");
+
+        //Debug.Log("In Town Start");
+        
+    }
+
+
+    public void addNeighbor(Town town){
+        neighbors.Add(town);
+    }
+
+
+    public void setXY(int xpos, int ypos) {
+        base.setXY(xpos, ypos);
+
+        placeText();
+
+        //test code
     }
 
     IEnumerator infectExposure() 

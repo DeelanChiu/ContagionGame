@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PopAlive : GameItem
 {
-    
+    public GameObject canvas_go;
 
     private Animator animator;
 
@@ -19,8 +19,13 @@ public class PopAlive : GameItem
 
     void Awake(){
 
+    }
+
+    // Use this for initialization
+    void Start()
+    {
         text_go = new GameObject();
-        text_go.transform.parent = GameController.instance.canvas_go.transform;
+        text_go.transform.parent = GameController.instance.gamestate.canvas_go.transform;
         text_go.name = "PopAliveInfo";
 
         text = text_go.AddComponent<Text>();
@@ -35,14 +40,6 @@ public class PopAlive : GameItem
         rectTransform.sizeDelta = new Vector2(150, 40);
         rectTransform.localScale = new Vector3(1f,1f,1f);
 
-
-
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        
         remainingPop = GameController.instance.gamestate.totalPopulation;
         Debug.Log(remainingPop);
         

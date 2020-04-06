@@ -9,8 +9,8 @@ using System.Linq;
 
 public class GameState
 {
-    private int cols;
-    private int rows;
+    public Canvas canvas;
+    public GameObject canvas_go;
 
     public bool levelPass;
     public bool EndGame;
@@ -83,6 +83,18 @@ public class GameState
         Debug.Log(tn == null);
         */
 
+        // Canvas
+        canvas_go = new GameObject();
+        canvas_go.name = "LevelCanvas";
+        canvas_go.AddComponent<Canvas>();
+
+        canvas = canvas_go.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        canvas.worldCamera = Camera.main.GetComponent<Camera>();;
+        canvas.sortingOrder = 2;
+        canvas_go.AddComponent<CanvasScaler>();
+        canvas_go.AddComponent<GraphicRaycaster>();
+
         levelPass = false;
         EndGame = false;
         levelEnd = false;
@@ -146,6 +158,7 @@ public class GameState
         
         //set XY
         Town tn = town_go.GetComponent<Town>();
+        tn.canvas_go = canvas_go;
         tn.setXY(coordX, coordY);
         tn.population = townPop;
 
@@ -270,6 +283,7 @@ public class GameState
         
         //set XY
         BlocksLeft blc = blocksleft_go.GetComponent<BlocksLeft>();
+        blc.canvas_go =  canvas_go;
         blc.setBlocksLeft(blocks);
 
         return blc;
@@ -283,6 +297,7 @@ public class GameState
         
         //set XY
         PopAlive pa = popalive_go.GetComponent<PopAlive>();
+        pa.canvas_go = canvas_go;
 
         return pa;
     }
@@ -302,6 +317,7 @@ public class GameState
         
         //set XY
         WinLoseScreen wls = winScreen_go.GetComponent<WinLoseScreen>();
+        wls.canvas_go = canvas_go;
         //winScreen_go.SetActive(false);
         //wls.winScreen_go = winScreen_go;
 
