@@ -15,8 +15,6 @@ public enum TownState
 
 public class Town : GameItem
 {
-    private Canvas townCanvas;
-    private GameObject townCanvas_go;
     public TownState state;
     private TownState prevState;
     private Animator animator;

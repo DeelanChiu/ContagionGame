@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class BlocksLeft : GameItem
 {
-    private Canvas blocksLeftCanvas;
-    private GameObject blocksLeftCanvas_go;
     private Animator animator;
 
     private int blocks;

@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class PopAlive : GameItem
 {
-    private Canvas popAliveCanvas;
-    private GameObject popAliveCanvas_go;
     private Animator animator;
 
     int remainingPop;
