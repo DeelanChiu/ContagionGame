@@ -110,9 +110,12 @@ public class GameState
         matrix = new Town[4,3];
 
 
-        Town tn1 = createTown(1, 1, 100, 0f);
-        Town tn2 = createTown(1, 2, 80, 5.0f);
-        Town tn3 = createTown(2, 1, 50, 0f);
+        createTown(1, 1, 100, 0f);
+        createTown(1, 2, 80, 5.0f);
+        createTown(2, 1, 50, 0f);
+        createTown(0, 0, 50, 0f);
+        createTown(3, 2, 50, 0f);
+
 
         createRoad(1, 1, 1, 2);
         createRoad(1, 1, 2, 1);
@@ -132,7 +135,7 @@ public class GameState
 
         float x = 0;
         float y = 0;
-
+        
         if (coordX == 0){
             x = -6.5f;
         } else if (coordX == 1){
@@ -150,15 +153,36 @@ public class GameState
         } else if (coordY == 2){
             y = -4.5f;
         }
+        
+        /*
+        if (coordX == 0){
+            x = -416f;
+        } else if (coordX == 1){
+            x = -140.8f;
+        } else if (coordX == 2){
+            x = 140.8f;
+        } else if (coordX == 3){
+            x = 416f;
+        }
+
+        if (coordY == 0){
+            y = 224f;
+        } else if (coordY == 1){
+            y = -32f;
+        } else if (coordY == 2){
+            y = -288f;
+        }
+        */
 
         string prefabName = "Prefabs/Town";
         Object town = Resources.Load<GameObject>(prefabName);
         Vector3 pos = new Vector3(x, y, 100);
         GameObject town_go = (GameObject)Object.Instantiate(town, pos, Quaternion.identity);
+        town_go.transform.parent = canvas_go.transform;
         
         //set XY
         Town tn = town_go.GetComponent<Town>();
-        tn.canvas_go = canvas_go;
+        
         tn.setXY(coordX, coordY);
         tn.population = townPop;
 
@@ -267,6 +291,7 @@ public class GameState
         
         //set XY
         Road rd = road_go.GetComponent<Road>();
+        road_go.transform.parent = canvas_go.transform;
         //rd.rdtype = rt;
         rd.setXY(coordX1, coordY1);
         rd.town1 = tnA;
@@ -280,10 +305,10 @@ public class GameState
         Object blocksleft = Resources.Load<GameObject>(prefabName);
         Vector3 pos = new Vector3(6.4f, 5.4f, 100);
         GameObject blocksleft_go = (GameObject)Object.Instantiate(blocksleft, pos, Quaternion.identity);
+        blocksleft_go.transform.parent = canvas_go.transform;
         
         //set XY
         BlocksLeft blc = blocksleft_go.GetComponent<BlocksLeft>();
-        blc.canvas_go =  canvas_go;
         blc.setBlocksLeft(blocks);
 
         return blc;
@@ -294,11 +319,10 @@ public class GameState
         Object popAlive = Resources.Load<GameObject>(prefabName);
         Vector3 pos = new Vector3(3.0f, 5.4f, 100);
         GameObject popalive_go = (GameObject)Object.Instantiate(popAlive, pos, Quaternion.identity);
+        popalive_go.transform.parent = canvas_go.transform;
         
         //set XY
         PopAlive pa = popalive_go.GetComponent<PopAlive>();
-        pa.canvas_go = canvas_go;
-
         return pa;
     }
 
@@ -314,10 +338,10 @@ public class GameState
         Object winScreen = Resources.Load<GameObject>(prefabName);
         Vector3 pos = new Vector3(0f, -0.6f, 100);
         GameObject winScreen_go = (GameObject)Object.Instantiate(winScreen, pos, Quaternion.identity);
+        winScreen_go.transform.parent = canvas_go.transform;
         
         //set XY
         WinLoseScreen wls = winScreen_go.GetComponent<WinLoseScreen>();
-        wls.canvas_go = canvas_go;
         //winScreen_go.SetActive(false);
         //wls.winScreen_go = winScreen_go;
 

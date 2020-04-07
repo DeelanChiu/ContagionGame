@@ -15,7 +15,6 @@ public enum TownState
 
 public class Town : GameItem
 {
-    public GameObject canvas_go;
     private Canvas townCanvas;
     private GameObject townCanvas_go;
     public TownState state;
@@ -62,60 +61,7 @@ public class Town : GameItem
     }
 
     public void placeText(){
-        text_go = new GameObject();
-        text_go.transform.parent = canvas_go.transform;
-        text_go.name = "TownInfo";
-
-        text = text_go.AddComponent<Text>();
-        text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        text.text = population+"\n"+infectionProb;
-        text.fontSize = 30;
-        text.color = Color.black;
-        text.lineSpacing = 0.9f;
-        text.alignment = TextAnchor.MiddleCenter;
-
-        float x = 0;
-        float y = 0;
-        if (xpos == 0){
-            x = -415f;
-        } else if (xpos == 1){
-            x = -140f;
-        } else if (xpos == 2){
-            x = 140f;
-        } else if (xpos == 3){
-            x = 415f;
-        }
-
-        if (ypos == 0){
-            y = 175f;
-        } else if (ypos == 1){
-            y = -80f;
-        } else if (ypos == 2){
-            y = -337f;
-        }
-
-        // Text position
-        rectTransform = text.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(x, y, 0);
-        rectTransform.sizeDelta = new Vector2(400, 200);
-        rectTransform.localScale = new Vector3(1f,1f,1f);
-    }
-
-    void Awake(){
-        itemtype = ItemType.TOWN;
-
-        animator = GetComponent<Animator>();
-        prevState  =  TownState.HEALTHY;
-        state = TownState.HEALTHY;
-
-        neighbors = new List<Town>();
-        infectedNeighbors = new List<Town>();
-        //infectedNum = 0;
-
-        population = 100;
-        infectionProb = 0;
-        currInfectionProb = infectionProb;
-
+        /*
         townCanvas_go = new GameObject();
         townCanvas_go.name = "townCanvas";
         townCanvas_go.AddComponent<Canvas>();
@@ -131,9 +77,14 @@ public class Town : GameItem
         RectTransform townCanvasRect = townCanvas_go.GetComponent<RectTransform>();
         townCanvasRect.localPosition = new Vector3(0, -0.75f, 0);
         townCanvasRect.sizeDelta = new Vector2(3f, 1f);
+        */
+        itemCanvas_go.name = "townCanvas";
+        itemCanvas.sortingOrder = 3;
+        itemCanvasRect.localPosition = new Vector3(0, -0.75f, 0);
+        itemCanvasRect.sizeDelta = new Vector2(3f, 1f);
         
         text_go = new GameObject();
-        text_go.transform.parent = townCanvas_go.transform;
+        text_go.transform.parent = itemCanvas_go.transform;
         text_go.name = "TownInfo";
 
         text = text_go.AddComponent<Text>();
@@ -149,6 +100,26 @@ public class Town : GameItem
         rectTransform.localPosition = new Vector3(0, 0, 0);
         rectTransform.sizeDelta = new Vector2(400, 200);
         rectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);
+    }
+
+    new void Awake(){
+        base.Awake();
+
+        itemtype = ItemType.TOWN;
+
+        animator = GetComponent<Animator>();
+        prevState  =  TownState.HEALTHY;
+        state = TownState.HEALTHY;
+
+        neighbors = new List<Town>();
+        infectedNeighbors = new List<Town>();
+        //infectedNum = 0;
+
+        population = 100;
+        infectionProb = 0;
+        currInfectionProb = infectionProb;
+
+        placeText();
         
 
     }

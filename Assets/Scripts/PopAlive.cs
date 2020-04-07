@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class PopAlive : GameItem
 {
-    public GameObject canvas_go;
-
+    private Canvas popAliveCanvas;
+    private GameObject popAliveCanvas_go;
     private Animator animator;
 
     int remainingPop;
@@ -17,8 +17,20 @@ public class PopAlive : GameItem
     private Text text;
     private RectTransform rectTransform;
 
-    void Awake(){
+    new void Awake(){
+        popAliveCanvas_go = new GameObject();
+        popAliveCanvas_go.name = "BlocksLeftCanvas";
+        popAliveCanvas_go.AddComponent<Canvas>();
+        popAliveCanvas_go.transform.parent = this.transform;
 
+        popAliveCanvas = popAliveCanvas_go.GetComponent<Canvas>();
+        popAliveCanvas.sortingOrder = 3;
+        popAliveCanvas_go.AddComponent<CanvasScaler>();
+        popAliveCanvas_go.AddComponent<GraphicRaycaster>();
+
+        RectTransform popAliveRect = popAliveCanvas_go.GetComponent<RectTransform>();
+        popAliveRect.localPosition = new Vector3(0, 0, 0);
+        popAliveRect.sizeDelta = new Vector2(3f, 1f);
     }
 
     // Use this for initialization
