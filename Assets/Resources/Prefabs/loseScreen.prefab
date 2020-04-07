@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4300178426463982}
   - component: {fileID: 212504054204591420}
+  - component: {fileID: 114104516785703918}
   m_Layer: 0
   m_Name: loseScreen
   m_TagString: Untagged
@@ -40,6 +41,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114104516785703918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1544975402115826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286df36c6abf7aa45978e9d981ed32fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCanvas: {fileID: 0}
+  itemCanvas_go: {fileID: 0}
+  itemCanvasRect: {fileID: 0}
+  itemtype: 0
+  xpos: 0
+  ypos: 0
+  go: {fileID: 0}
+  winScreen_go: {fileID: 0}
+  loseScreen_go: {fileID: 0}
 --- !u!212 &212504054204591420
 SpriteRenderer:
   m_ObjectHideFlags: 1

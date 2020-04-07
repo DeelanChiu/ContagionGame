@@ -19,7 +19,7 @@ public class PopAlive : GameItem
         base.Awake();
 
         itemCanvas_go.name = "popAliveCanvas";
-        itemCanvas.sortingOrder = 3;
+        itemCanvas.sortingOrder = 2;
         itemCanvasRect.localPosition = new Vector3(0, 0, 0);
         itemCanvasRect.sizeDelta = new Vector2(3f, 1f);
     }

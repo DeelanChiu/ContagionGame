@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4295235759843962}
   - component: {fileID: 212925298952704374}
+  - component: {fileID: 114484678303447720}
   m_Layer: 0
   m_Name: winScreen
   m_TagString: Untagged
@@ -40,6 +41,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114484678303447720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1006307589436476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286df36c6abf7aa45978e9d981ed32fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCanvas: {fileID: 0}
+  itemCanvas_go: {fileID: 0}
+  itemCanvasRect: {fileID: 0}
+  itemtype: 0
+  xpos: 0
+  ypos: 0
+  go: {fileID: 0}
+  winScreen_go: {fileID: 0}
+  loseScreen_go: {fileID: 0}
 --- !u!212 &212925298952704374
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -74,7 +95,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 59a21c0c035bac040bce19df440e0964, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

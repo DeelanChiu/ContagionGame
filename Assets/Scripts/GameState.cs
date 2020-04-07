@@ -90,7 +90,7 @@ public class GameState
 
         canvas = canvas_go.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
-        canvas.worldCamera = Camera.main.GetComponent<Camera>();;
+        canvas.worldCamera = Camera.main.GetComponent<Camera>();
         canvas.sortingOrder = 2;
         canvas_go.AddComponent<CanvasScaler>();
         canvas_go.AddComponent<GraphicRaycaster>();
@@ -327,6 +327,18 @@ public class GameState
     }
 
     public WinLoseScreen setupWinLoseScreen(){
+
+        GameObject resultCanvas_go = new GameObject();
+        resultCanvas_go.name = "ResultCanvas";
+        resultCanvas_go.AddComponent<Canvas>();
+
+        Canvas resultCanvas = resultCanvas_go.GetComponent<Canvas>();
+        resultCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        resultCanvas.worldCamera = Camera.main.GetComponent<Camera>();
+        resultCanvas.sortingOrder = 3;
+        resultCanvas_go.AddComponent<CanvasScaler>();
+        resultCanvas_go.AddComponent<GraphicRaycaster>();
+
         levelEnd = true;
         string prefabName = "Prefabs/";
         if ((float)currPopulation/(float)totalPopulation >= requiredSurvivalRate){
@@ -338,7 +350,7 @@ public class GameState
         Object winScreen = Resources.Load<GameObject>(prefabName);
         Vector3 pos = new Vector3(0f, -0.6f, 100);
         GameObject winScreen_go = (GameObject)Object.Instantiate(winScreen, pos, Quaternion.identity);
-        winScreen_go.transform.parent = canvas_go.transform;
+        winScreen_go.transform.parent = resultCanvas_go.transform;
         
         //set XY
         WinLoseScreen wls = winScreen_go.GetComponent<WinLoseScreen>();
