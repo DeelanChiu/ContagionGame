@@ -17,22 +17,13 @@ public class BlocksLeft : GameItem
     private Text text;
     private RectTransform rectTransform;
 
-    void Awake(){
-        blocksLeftCanvas_go = new GameObject();
-        blocksLeftCanvas_go.name = "BlocksLeftCanvas";
-        blocksLeftCanvas_go.AddComponent<Canvas>();
-        blocksLeftCanvas_go.transform.parent = this.transform;
+    new void Awake(){
+        base.Awake();
 
-        blocksLeftCanvas = blocksLeftCanvas_go.GetComponent<Canvas>();
-        //townCanvas.renderMode = RenderMode.ScreenSpaceCamera;
-        //townCanvas.worldCamera = Camera.main.GetComponent<Camera>();;
-        blocksLeftCanvas.sortingOrder = 3;
-        blocksLeftCanvas_go.AddComponent<CanvasScaler>();
-        blocksLeftCanvas_go.AddComponent<GraphicRaycaster>();
-
-        RectTransform blocksLeftCanvasRect = blocksLeftCanvas_go.GetComponent<RectTransform>();
-        blocksLeftCanvasRect.localPosition = new Vector3(0, 0, 0);
-        blocksLeftCanvasRect.sizeDelta = new Vector2(3f, 1f);
+        itemCanvas_go.name = "popAliveCanvas";
+        itemCanvas.sortingOrder = 3;
+        itemCanvasRect.localPosition = new Vector3(0, 0, 0);
+        itemCanvasRect.sizeDelta = new Vector2(3f, 1f);
     }
 
     // Use this for initialization
@@ -40,7 +31,7 @@ public class BlocksLeft : GameItem
     {
         text_go = new GameObject();
         //text_go.transform.parent = GameController.instance.gamestate.canvas_go.transform;
-        text_go.transform.parent = blocksLeftCanvas_go.transform;
+        text_go.transform.parent = itemCanvas_go.transform;
         text_go.name = "BlocksLeftInfo";
 
         text = text_go.AddComponent<Text>();
@@ -51,14 +42,9 @@ public class BlocksLeft : GameItem
         text.alignment = TextAnchor.MiddleCenter;
 
         rectTransform = text.GetComponent<RectTransform>();
-        //rectTransform.localPosition = new Vector3(390, 350, 0);
         rectTransform.localPosition = new Vector3(-0.3f, 0, 0);
-        rectTransform.sizeDelta = new Vector2(60, 40);
-        //rectTransform.localScale = new Vector3(1f,1f,1f);
-        rectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);
-
-
-        
+        rectTransform.sizeDelta = new Vector2(400, 200);
+        rectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);  
     }
 
     public void setBlocksLeft (int n){

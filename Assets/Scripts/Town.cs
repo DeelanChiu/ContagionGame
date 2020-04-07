@@ -60,28 +60,7 @@ public class Town : GameItem
         return state;
     }
 
-    public void placeText(){
-        /*
-        townCanvas_go = new GameObject();
-        townCanvas_go.name = "townCanvas";
-        townCanvas_go.AddComponent<Canvas>();
-        townCanvas_go.transform.parent = this.transform;
-
-        townCanvas = townCanvas_go.GetComponent<Canvas>();
-        //townCanvas.renderMode = RenderMode.ScreenSpaceCamera;
-        //townCanvas.worldCamera = Camera.main.GetComponent<Camera>();;
-        townCanvas.sortingOrder = 3;
-        townCanvas_go.AddComponent<CanvasScaler>();
-        townCanvas_go.AddComponent<GraphicRaycaster>();
-
-        RectTransform townCanvasRect = townCanvas_go.GetComponent<RectTransform>();
-        townCanvasRect.localPosition = new Vector3(0, -0.75f, 0);
-        townCanvasRect.sizeDelta = new Vector2(3f, 1f);
-        */
-        itemCanvas_go.name = "townCanvas";
-        itemCanvas.sortingOrder = 3;
-        itemCanvasRect.localPosition = new Vector3(0, -0.75f, 0);
-        itemCanvasRect.sizeDelta = new Vector2(3f, 1f);
+    public void placeText(){     
         
         text_go = new GameObject();
         text_go.transform.parent = itemCanvas_go.transform;
@@ -104,6 +83,11 @@ public class Town : GameItem
 
     new void Awake(){
         base.Awake();
+
+        itemCanvas_go.name = "townCanvas";
+        itemCanvas.sortingOrder = 3;
+        itemCanvasRect.localPosition = new Vector3(0, -0.75f, 0);
+        itemCanvasRect.sizeDelta = new Vector2(3f, 1f);
 
         itemtype = ItemType.TOWN;
 
