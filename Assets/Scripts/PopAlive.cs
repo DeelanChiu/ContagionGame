@@ -44,7 +44,7 @@ public class PopAlive : GameItem
         rectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);
 
         remainingPop = GameController.instance.gamestate.totalPopulation;
-        Debug.Log(remainingPop);
+        //Debug.Log(remainingPop);
         
     }
 

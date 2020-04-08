@@ -239,12 +239,12 @@ public class Town : GameItem
             StopCoroutine("evacuatePopulation");
             StopCoroutine("checkOffline");
             GameController.instance.gamestate.currPopulation -= population;
-            Debug.Log(GameController.instance.gamestate.currPopulation);
+            //Debug.Log(GameController.instance.gamestate.currPopulation);
 
             GameController.instance.gamestate.infectedTowns -= 1;
             GameController.instance.gamestate.EndGame = 
                 GameController.instance.gamestate.infectedTowns == 0 && GameController.instance.gamestate.pendingTimers == 0;
-            Debug.Log(GameController.instance.gamestate.EndGame);
+            //Debug.Log(GameController.instance.gamestate.EndGame);
         }
     }
 

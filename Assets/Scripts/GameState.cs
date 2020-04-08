@@ -16,13 +16,13 @@ public class GameState
     public bool EndGame;
     public bool levelEnd;
     public int level;
-    public float survivalPercent;
+    public int survivalPercent;
 
     public int infectionPlusInc;
 
     public BlocksLeft blksLeft;
 
-    public float requiredSurvivalRate;
+    public int[] survivalPercentLevels =  {0, 0, 0};
     public int currPopulation;
     public int totalPopulation;
 
@@ -104,7 +104,9 @@ public class GameState
         infectedTowns = 0;
 
         infectionPlusInc = 2;
-        requiredSurvivalRate = 0.5f;
+        survivalPercentLevels[0] = 60;
+        survivalPercentLevels[1] = 80;
+        survivalPercentLevels[2] = 95;
         totalPopulation = 0;
         currPopulation = 0;
 
@@ -342,8 +344,8 @@ public class GameState
 
         levelEnd = true;
         string prefabName = "Prefabs/";
-        survivalPercent = (float)currPopulation/(float)totalPopulation;
-        if (survivalPercent >= requiredSurvivalRate){
+        survivalPercent = (int)((float)currPopulation/(float)totalPopulation * 100f);
+        if (survivalPercent >= survivalPercentLevels[0]){
             prefabName += "winScreen";
             levelPass = true;
         } else {

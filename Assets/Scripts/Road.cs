@@ -56,7 +56,7 @@ public class Road : GameItem
 
     void OnMouseDown()
     {
-        Debug.Log("Pressed");
+        //Debug.Log("Pressed");
 
         if (GameController.instance.gamestate.blksLeft.useBlock()){
             town1.cutOff(town2);
