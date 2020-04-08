@@ -16,6 +16,7 @@ public class GameState
     public bool EndGame;
     public bool levelEnd;
     public int level;
+    public float survivalPercent;
 
     public int infectionPlusInc;
 
@@ -341,7 +342,8 @@ public class GameState
 
         levelEnd = true;
         string prefabName = "Prefabs/";
-        if ((float)currPopulation/(float)totalPopulation >= requiredSurvivalRate){
+        survivalPercent = (float)currPopulation/(float)totalPopulation;
+        if (survivalPercent >= requiredSurvivalRate){
             prefabName += "winScreen";
             levelPass = true;
         } else {
