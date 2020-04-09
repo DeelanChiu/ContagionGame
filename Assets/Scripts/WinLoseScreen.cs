@@ -25,20 +25,40 @@ public class WinLoseScreen : GameItem
     }
 
     void displayHearts(){
-        /*
+        Vector3 pos = new Vector3(-6f, -0.8f, 0);
         foreach (int percent in GameController.instance.gamestate.survivalPercentLevels){
-            string prefabName = "Prefabs/Heart";
-            Object heart = Resources.Load<GameObject>(prefabName);
+            string prefabName = "Prefabs/";
             if (GameController.instance.gamestate.survivalPercent >= percent){
-                prefabName+="/heart";
+                prefabName+="heart";
             } else {
-                prefabName+="/heartBlack";
+                prefabName+="heartBlack";
             }
+            Debug.Log(prefabName);
+            Object heart = Resources.Load<GameObject>(prefabName);
+            Debug.Log(heart == null);
+
+            pos = new Vector3(pos.x + 3f, -0.8f, 0);
+
+            GameObject heart_go = (GameObject)Object.Instantiate(heart, pos, Quaternion.identity);
+            heart_go.transform.parent = itemCanvas_go.transform;
+
+            GameObject heartCanvas_go = new GameObject();
+            heartCanvas_go.AddComponent<Canvas>();
+            heartCanvas_go.transform.parent = heart_go.transform;
+            Canvas heartCanvas = heartCanvas_go.GetComponent<Canvas>();
+            heartCanvas_go.AddComponent<CanvasScaler>();
+            heartCanvas_go.AddComponent<GraphicRaycaster>();
+            RectTransform heartCanvasRect = heartCanvas_go.GetComponent<RectTransform>();
+
+            heartCanvas_go.name = "heartCanvas";
+            heartCanvas.sortingOrder = 3;
+            heartCanvasRect.localPosition = new Vector3(0.1f, -1.1f, 0);
+            heartCanvasRect.sizeDelta = new Vector2(3f, 1f);
 
 
         }
-        */
-
+        
+        /*
         string prefabName = "Prefabs/Heart";
         Object heart = Resources.Load<GameObject>(prefabName);
 
@@ -84,6 +104,7 @@ public class WinLoseScreen : GameItem
         Vector3 pos3 = new Vector3(3f, -0.8f, 0);
         GameObject heart_go3 = (GameObject)Object.Instantiate(heart, pos3, Quaternion.identity);
         heart_go3.transform.parent = itemCanvas_go.transform;
+        */
         
        // Heart pa = heart_go.GetComponent<Heart>();
     }
