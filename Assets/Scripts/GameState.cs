@@ -33,6 +33,20 @@ public class GameState
     Town[,] matrix;
 
     // PlayerPrefs: LoseGame: 0 = in progress, 1 = win game, 2 = stuck, 3 = eaten, 4 = burned
+
+    private void loadData(string jsonString){
+        var gamedata = JSON.Parse(jsonString);
+        var leveldata = gamedata["Level" + level];
+
+        infectionPlusInc = leveldata["infectionPlusInc"].AsInt;
+        var survivalPercentLevelsJSON = leveldata["survivalPercentLevels"];
+        for (int k = 0; k < 3; k++){
+            survivalPercentLevels[k] = survivalPercentLevelsJSON[k].AsInt;
+        }
+        Debug.Log(infectionPlusInc);
+
+    }
+
     public GameState(int l, string jsonString)
     {
         /*
@@ -73,16 +87,6 @@ public class GameState
 
         initColor = GameObject.Find("Square00").GetComponent<SpriteRenderer>().color;
         */
-        /*
-        Vector3 pos = new Vector3(0, 0, 100);
-        Object town = null;
-        string prefabName = "Prefabs/Town";
-        town = Resources.Load<GameObject>(prefabName);
-        GameObject town_go = (GameObject)Object.Instantiate(town, pos, Quaternion.identity);
-        town_go.name = "Town1";
-        Town tn = town_go.GetComponent<Town>();
-        Debug.Log(tn == null);
-        */
 
         // Canvas
         canvas_go = new GameObject();
@@ -102,16 +106,18 @@ public class GameState
 
         pendingTimers = 0;
         infectedTowns = 0;
-
-        infectionPlusInc = 2;
-        survivalPercentLevels[0] = 60;
-        survivalPercentLevels[1] = 80;
-        survivalPercentLevels[2] = 95;
         totalPopulation = 0;
         currPopulation = 0;
 
         matrix = new Town[4,3];
 
+        level = l;
+        loadData(jsonString);
+
+        //infectionPlusInc = 2;
+        //survivalPercentLevels[0] = 60;
+        //survivalPercentLevels[1] = 80;
+        //survivalPercentLevels[2] = 95;
 
         createTown(1, 1, 100, 0f);
         createTown(1, 2, 80, 5.0f);

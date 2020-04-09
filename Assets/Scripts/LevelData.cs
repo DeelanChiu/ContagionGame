@@ -8,7 +8,7 @@ public class LevelData : MonoBehaviour {
     //public GameObject startButton;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         //startButton.SetActive(true);
 		DontDestroyOnLoad(gameObject);
 		StartCoroutine(loadStreamingAsset("levels.json"));

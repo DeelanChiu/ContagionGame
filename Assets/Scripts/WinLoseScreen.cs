@@ -33,9 +33,7 @@ public class WinLoseScreen : GameItem
             } else {
                 prefabName+="heartBlack";
             }
-            Debug.Log(prefabName);
             Object heart = Resources.Load<GameObject>(prefabName);
-            Debug.Log(heart == null);
 
             pos = new Vector3(pos.x + 3f, -0.8f, 0);
 
