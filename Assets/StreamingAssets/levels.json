@@ -1,6 +1,39 @@
 {
     "Level1": {
         "infectionPlusInc": 2,
-        "survivalPercentLevels": [60, 80, 95]
+        "survivalPercentLevels": [60, 80, 95],
+        "blocksAllowed": 1,
+        "towns": [{
+                "coordX": 1,
+                "coordY": 1,
+                "townPop": 100,
+                "infectTime": 0
+            },
+            {
+                "coordX": 1,
+                "coordY": 2,
+                "townPop": 80,
+                "infectTime": 5
+            },
+            {
+                "coordX": 2,
+                "coordY": 1,
+                "townPop": 50,
+                "infectTime": 0
+            }
+        ],
+        "roads": [{
+                "coordX1": 1,
+                "coordY1": 1,
+                "coordX2": 1,
+                "coordY2": 2
+            },
+            {
+                "coordX1": 1,
+                "coordY1": 1,
+                "coordX2": 2,
+                "coordY2": 1
+            }
+        ]
     }
 }

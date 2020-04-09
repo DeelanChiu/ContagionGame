@@ -39,55 +39,35 @@ public class GameState
         var leveldata = gamedata["Level" + level];
 
         infectionPlusInc = leveldata["infectionPlusInc"].AsInt;
+        blksLeft = showBlocksLeft(leveldata["blocksAllowed"].AsInt);
+
         var survivalPercentLevelsJSON = leveldata["survivalPercentLevels"];
         for (int k = 0; k < 3; k++){
             survivalPercentLevels[k] = survivalPercentLevelsJSON[k].AsInt;
         }
+
+        var towns = leveldata["towns"];
+        for (int k = 0; k < towns.Count; k++){
+            var townData = towns[k];
+            createTown(townData["coordX"].AsInt,  townData["coordY"].AsInt, 
+                townData["townPop"].AsInt, townData["infectTime"].AsInt);
+        }
+
+        var roads = leveldata["roads"];
+        Debug.Log(roads == null);
+        for (int k = 0; k < roads.Count; k++){
+            var roadData = roads[k];
+            Debug.Log(roadData == null);
+            createRoad(roadData["coordX1"].AsInt, roadData["coordY1"].AsInt, 
+                roadData["coordX2"].AsInt, roadData["coordY2"].AsInt);
+        }
+        
         Debug.Log(infectionPlusInc);
 
     }
 
     public GameState(int l, string jsonString)
     {
-        /*
-        foodCount = 0;
-        level = l;
-        click1 = null;
-        NoMoreValidMoves = false;
-        EndGame = false;
-        onFire = false;
-
-        loadData(jsonString);
-
-        //show hint text
-        GameController.instance.setHint(hintString);
-
-        //set camera
-        //GameObject.Find("MainCamera").GetComponent<MainCamera>().setPosition(cols, rows);
-        Camera.main.transform.position =
-        new Vector3((((float)cols)/2 - 0.5f) * 20 - 20, (((float)rows)/2 - 0.5f) * (-20) + 20, -10);
-        Camera.main.orthographicSize = 65;
-        if (rows >= 5) {
-          Camera.main.orthographicSize = 70;
-        }
-        if (rows >= 7) {
-          Camera.main.orthographicSize = 80;
-        }
-        Color bgColor = new Color();
-        ColorUtility.TryParseHtmlString("#007C13", out bgColor);
-        Camera.main.backgroundColor = bgColor;
-
-        if (l==1) {
-            //show hint arrow
-            Vector3 pos = new Vector3(-33, 0, 100);
-            Object startarrow = Resources.Load<Object>("Prefabs/StartArrow");
-            GameObject starta_go = (GameObject)Object.Instantiate(startarrow, pos, Quaternion.identity);
-            starta_go.name = "StartArrow";
-        }
-
-        initColor = GameObject.Find("Square00").GetComponent<SpriteRenderer>().color;
-        */
-
         // Canvas
         canvas_go = new GameObject();
         canvas_go.name = "LevelCanvas";
@@ -113,23 +93,7 @@ public class GameState
 
         level = l;
         loadData(jsonString);
-
-        //infectionPlusInc = 2;
-        //survivalPercentLevels[0] = 60;
-        //survivalPercentLevels[1] = 80;
-        //survivalPercentLevels[2] = 95;
-
-        createTown(1, 1, 100, 0f);
-        createTown(1, 2, 80, 5.0f);
-        createTown(2, 1, 50, 0f);
-        createTown(0, 0, 50, 0f);
-        createTown(3, 2, 50, 0f);
-
-
-        createRoad(1, 1, 1, 2);
-        createRoad(1, 1, 2, 1);
         
-        blksLeft = showBlocksLeft(1);
         showPopAlive();
         
     }
