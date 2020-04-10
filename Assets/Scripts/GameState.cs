@@ -93,6 +93,10 @@ public class GameState
 
         level = l;
         loadData(jsonString);
+
+        if (level == 1){//tutorial
+
+        }
         
         showPopAlive();
         
