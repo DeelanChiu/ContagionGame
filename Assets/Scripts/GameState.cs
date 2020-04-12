@@ -95,6 +95,7 @@ public class GameState
         loadData(jsonString);
 
         if (level == 1){//tutorial
+            displayTutorialPart("townTutorial", 0, 0, 0, 5f);
 
         }
         
@@ -171,6 +172,20 @@ public class GameState
         matrix[coordX, coordY] = tn;
 
         return tn;
+
+    }
+
+    private void displayTutorialPart(string prefab, float x, float y, float t1, float t2){
+        string prefabName = "Prefabs/Tutorial/"+prefab;
+
+        Object tutorial = Resources.Load<GameObject>(prefabName);
+        Vector3 pos = new Vector3(x, y, 100);
+        GameObject tutorial_go = (GameObject)Object.Instantiate(tutorial, pos, Quaternion.identity);
+        tutorial_go.transform.parent = canvas_go.transform;
+
+        TutorialComponent tc = tutorial_go.GetComponent<TutorialComponent>();
+        tc.this_go = tutorial_go;
+        tc.setTimer(t1, t2);
 
     }
 
