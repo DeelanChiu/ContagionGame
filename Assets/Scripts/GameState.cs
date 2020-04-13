@@ -54,15 +54,12 @@ public class GameState
         }
 
         var roads = leveldata["roads"];
-        Debug.Log(roads == null);
         for (int k = 0; k < roads.Count; k++){
             var roadData = roads[k];
-            Debug.Log(roadData == null);
             createRoad(roadData["coordX1"].AsInt, roadData["coordY1"].AsInt, 
                 roadData["coordX2"].AsInt, roadData["coordY2"].AsInt);
         }
         
-        Debug.Log(infectionPlusInc);
 
     }
 
@@ -95,7 +92,11 @@ public class GameState
         loadData(jsonString);
 
         if (level == 1){//tutorial
-            displayTutorialPart("townTutorial", 0, 0, 0, 5f);
+            displayTutorialPart("townTutorial", 2.16f, 1.34f, 0, 5f);
+            displayTutorialPart("townPopTutorial", 5.81f, -1.24f, 0, 5f);
+            displayTutorialPart("roadTutorial", -2.04f, -2.92f, 0, 5f);
+
+            displayTutorialPart("infectedTownTutorial", 5.72f, -2.92f, 5f, 5f);
 
         }
         
