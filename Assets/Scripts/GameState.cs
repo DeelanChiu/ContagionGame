@@ -185,6 +185,7 @@ public class GameState
 
         TutorialComponent tc = tutorial_go.GetComponent<TutorialComponent>();
         tc.this_go = tutorial_go;
+        pendingTimers += 1;
         tc.setTimer(t1, t2);
 
     }

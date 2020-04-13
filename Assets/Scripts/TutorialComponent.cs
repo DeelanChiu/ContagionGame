@@ -24,7 +24,9 @@ public class TutorialComponent : GameItem
         yield return new WaitForSeconds(t);
         spriteRenderer.sortingOrder = 3;
         yield return new WaitForSeconds(dur);
+        yield return new WaitForSeconds(0.1f);
         spriteRenderer.sortingOrder = 0;
+        GameController.instance.gamestate.pendingTimers -= 1;
 
     }
 
