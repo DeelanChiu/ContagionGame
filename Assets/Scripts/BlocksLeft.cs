@@ -49,6 +49,10 @@ public class BlocksLeft : GameItem
         blocks = n;
     }
 
+    public int getBlocksLeft(){
+        return blocks;
+    }
+
     public bool useBlock (){
         if (blocks > 0){
             blocks--;

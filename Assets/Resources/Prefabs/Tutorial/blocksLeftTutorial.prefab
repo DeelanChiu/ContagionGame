@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212483535060555410}
   - component: {fileID: 114039713973754548}
   m_Layer: 0
-  m_Name: blockLeftTutorial
+  m_Name: blocksLeftTutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   xpos: 0
   ypos: 0
   go: {fileID: 0}
-  this_go: {fileID: 0}
+  prefab: 
 --- !u!212 &212483535060555410
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -33,6 +33,8 @@ public class GameState
 
     public int infectedTowns;
 
+    public bool tutorialRoadBlocked;
+
     Town[,] matrix;
 
     // PlayerPrefs: LoseGame: 0 = in progress, 1 = win game, 2 = stuck, 3 = eaten, 4 = burned
@@ -99,7 +101,8 @@ public class GameState
 
 
         if (level == 1){//tutorial
-            float[] frameLengths = {6f, 8f, 10f, 5f};
+            float[] frameLengths = {6f, 8f, 10f, 5f, 8f, 6f, 5f};
+            tutorialRoadBlocked = false;
 
             float offset = 0;
             displayTutorialPart("townTutorial", 2.16f, 1.34f, offset, frameLengths[0]);
@@ -110,12 +113,22 @@ public class GameState
             displayTutorialPart("infectedTownTutorial", 5.72f, -2.92f, offset, frameLengths[1]);
             offset+=frameLengths[1];
 
-            displayTutorialPart("infectionChanceTutorial", -5.7f, 1f, offset, frameLengths[2]);
+            displayTutorialPart("infectionChanceTutorial", -5.7f, 0.45f, offset, frameLengths[2]);
             displayTutorialPart("warningTownTutorial", -2.13f, -3.38f, offset, frameLengths[2]);
             offset+=frameLengths[2];
 
             displayTutorialPart("blockRoadTutorial", 0f, -2.9f, offset, frameLengths[3]);
-            offset+=frameLengths[3];
+            offset=0;
+
+            displayTutorialPart("offlineTownTutorial", 5.7f, -2.9f, offset, frameLengths[4]);
+            offset+=frameLengths[4];
+
+            displayTutorialPart("blocksLeftTutorial", 5.9f, 3.5f, offset, frameLengths[5]);
+            offset+=frameLengths[5];
+
+            displayTutorialPart("popAliveTutorial", 3f, 3.5f, offset, frameLengths[6]);
+            offset+=frameLengths[6];
+
 
         }
         
@@ -204,7 +217,7 @@ public class GameState
         tutorial_go.transform.parent = canvas_go.transform;
 
         TutorialComponent tc = tutorial_go.GetComponent<TutorialComponent>();
-        tc.this_go = tutorial_go;
+        tc.prefab = prefab;
         pendingTimers += 1;
         tc.setTimer(t1, t2);
 
