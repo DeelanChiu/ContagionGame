@@ -97,8 +97,6 @@ public class Town : GameItem
         infectedNeighbors = new List<Town>();
         //infectedNum = 0;
 
-        population = 100;
-        infectionProb = 0;
         currInfectionProb = infectionProb;
 
         placeText();
@@ -129,11 +127,11 @@ public class Town : GameItem
             //Debug.Log(""+currInfectionProb);
             float diceRoll = Random.Range(0.0f, 1.0f);
             //Debug.Log(diceRoll+" "+(float)currInfectionProb / 100f);
-            if (diceRoll <= (float)currInfectionProb / 100f){
+            if (diceRoll <= (float)currInfectionProb / 100f && GameController.instance.gamestate.level != 1){
                 state = TownState.INFECTED;
                 yield return null;
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(GameController.instance.gamestate.incTiming);
         }
 
         state = TownState.HEALTHY; //got rid of infected neighbor(s)
@@ -146,12 +144,11 @@ public class Town : GameItem
         while (neighbors.Count > 0 && population > 0) {
             //Debug.Log(neighbors.Count);
             foreach ( Town neighborTown in neighbors){
-                int evacInc = 10;
-                population -= evacInc;
-                neighborTown.population += evacInc;
+                population -= GameController.instance.gamestate.evacInc;
+                neighborTown.population += GameController.instance.gamestate.evacInc;
             }
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(GameController.instance.gamestate.incTiming);
         }
 
         yield return null;

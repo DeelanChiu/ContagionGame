@@ -3,6 +3,8 @@
         "infectionPlusInc": 1,
         "survivalPercentLevels": [60, 80, 95],
         "blocksAllowed": 1,
+        "evacInc": 1,
+        "incTiming": 2,
         "towns": [{
                 "coordX": 1,
                 "coordY": 1,
@@ -12,8 +14,8 @@
             {
                 "coordX": 2,
                 "coordY": 1,
-                "townPop": 50,
-                "infectTime": 5
+                "townPop": 80,
+                "infectTime": 6
             }
         ],
         "roads": [{

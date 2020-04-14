@@ -17,6 +17,9 @@ public class GameState
     public bool levelEnd;
     public int level;
     public int survivalPercent;
+    public int evacInc;
+
+    public float incTiming;
 
     public int infectionPlusInc;
 
@@ -40,6 +43,8 @@ public class GameState
 
         infectionPlusInc = leveldata["infectionPlusInc"].AsInt;
         blksLeft = showBlocksLeft(leveldata["blocksAllowed"].AsInt);
+        evacInc = leveldata["evacInc"].AsInt;
+        incTiming = leveldata["incTiming"].AsFloat;
 
         var survivalPercentLevelsJSON = leveldata["survivalPercentLevels"];
         for (int k = 0; k < 3; k++){
@@ -91,12 +96,26 @@ public class GameState
         level = l;
         loadData(jsonString);
 
-        if (level == 1){//tutorial
-            displayTutorialPart("townTutorial", 2.16f, 1.34f, 0, 5f);
-            displayTutorialPart("townPopTutorial", 5.81f, -1.24f, 0, 5f);
-            displayTutorialPart("roadTutorial", -2.04f, -2.92f, 0, 5f);
 
-            displayTutorialPart("infectedTownTutorial", 5.72f, -2.92f, 5f, 5f);
+
+        if (level == 1){//tutorial
+            float[] frameLengths = {6f, 8f, 10f, 5f};
+
+            float offset = 0;
+            displayTutorialPart("townTutorial", 2.16f, 1.34f, offset, frameLengths[0]);
+            displayTutorialPart("townPopTutorial", 5.81f, -1.24f, offset, frameLengths[0]);
+            displayTutorialPart("roadTutorial", -2.04f, -2.92f, offset, frameLengths[0]);
+            offset+=frameLengths[0];
+
+            displayTutorialPart("infectedTownTutorial", 5.72f, -2.92f, offset, frameLengths[1]);
+            offset+=frameLengths[1];
+
+            displayTutorialPart("infectionChanceTutorial", -5.7f, 1f, offset, frameLengths[2]);
+            displayTutorialPart("warningTownTutorial", -2.13f, -3.38f, offset, frameLengths[2]);
+            offset+=frameLengths[2];
+
+            displayTutorialPart("blockRoadTutorial", 0f, -2.9f, offset, frameLengths[3]);
+            offset+=frameLengths[3];
 
         }
         
