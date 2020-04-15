@@ -1,4 +1,5 @@
 {
+    "Levels": 2,
     "Level1": {
         "infectionPlusInc": 1,
         "survivalPercentLevels": [60, 80, 95],

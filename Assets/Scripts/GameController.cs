@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using SimpleJSON;
 
 public class GameController : MonoBehaviour
 {
@@ -12,13 +13,15 @@ public class GameController : MonoBehaviour
 
     public GameState gamestate;
 
+    public string levelDataJson;
+
     public int goToLevel;
 
     public int currLevel;
 
     public int reachedLevel;
 
-    public int numLevels = 1;
+    public int numLevels;
 
     public GameState gs()
     {
@@ -29,6 +32,10 @@ public class GameController : MonoBehaviour
     {
         reachedLevel = 1;
         currLevel = 1;
+
+        levelDataJson = GameObject.Find("LevelData").GetComponent<LevelData>().jsonString;
+
+        numLevels = JSON.Parse(levelDataJson)["Levels"];
 
         string scenename = SceneManager.GetActiveScene().name;
         /*
@@ -77,8 +84,7 @@ public class GameController : MonoBehaviour
             gamestate = null;
         }
 
-        string result = GameObject.Find("LevelData").GetComponent<LevelData>().jsonString;
-        gamestate = new GameState(currLevel, result); //result
+        gamestate = new GameState(currLevel); //result
 
     }
 

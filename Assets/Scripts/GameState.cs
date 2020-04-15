@@ -39,8 +39,8 @@ public class GameState
 
     // PlayerPrefs: LoseGame: 0 = in progress, 1 = win game, 2 = stuck, 3 = eaten, 4 = burned
 
-    private void loadData(string jsonString){
-        var gamedata = JSON.Parse(jsonString);
+    private void loadData(){
+        var gamedata = JSON.Parse(GameController.instance.levelDataJson);
         var leveldata = gamedata["Level" + level];
 
         infectionPlusInc = leveldata["infectionPlusInc"].AsInt;
@@ -70,7 +70,7 @@ public class GameState
 
     }
 
-    public GameState(int l, string jsonString)
+    public GameState(int l)
     {
         // Canvas
         canvas_go = new GameObject();
@@ -96,7 +96,7 @@ public class GameState
         matrix = new Town[4,3];
 
         level = l;
-        loadData(jsonString);
+        loadData();
 
 
 

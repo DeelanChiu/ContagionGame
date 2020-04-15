@@ -72,10 +72,12 @@ public class WinLoseScreen : GameItem
 
         }
 
-        Object nextLevelButton = Resources.Load<GameObject>("Prefabs/nextLevelButton");
-        Vector3 nextLevelButtonPos = new Vector3(3.5f, -4f, 100);
-        GameObject nextLevelButton_go = (GameObject)Object.Instantiate(nextLevelButton, nextLevelButtonPos, Quaternion.identity);
-        nextLevelButton_go.transform.parent = itemCanvas_go.transform;
+        if (GameController.instance.currLevel < GameController.instance.numLevels && GameController.instance.gamestate.levelPass){
+            Object nextLevelButton = Resources.Load<GameObject>("Prefabs/nextLevelButton");
+            Vector3 nextLevelButtonPos = new Vector3(3.5f, -4f, 100);
+            GameObject nextLevelButton_go = (GameObject)Object.Instantiate(nextLevelButton, nextLevelButtonPos, Quaternion.identity);
+            nextLevelButton_go.transform.parent = itemCanvas_go.transform;
+        }
 
         Object retryLevelButton = Resources.Load<GameObject>("Prefabs/retryButton");
         Vector3 retryLevelButtonPos = new Vector3(-3.5f, -4f, 100);
