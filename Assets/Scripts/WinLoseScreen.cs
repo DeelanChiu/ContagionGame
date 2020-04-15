@@ -71,6 +71,18 @@ public class WinLoseScreen : GameItem
             heartTextRectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);
 
         }
+
+        Object nextLevelButton = Resources.Load<GameObject>("Prefabs/nextLevelButton");
+        Vector3 nextLevelButtonPos = new Vector3(3.5f, -4f, 100);
+        GameObject nextLevelButton_go = (GameObject)Object.Instantiate(nextLevelButton, nextLevelButtonPos, Quaternion.identity);
+        nextLevelButton_go.transform.parent = itemCanvas_go.transform;
+
+        Object retryLevelButton = Resources.Load<GameObject>("Prefabs/retryButton");
+        Vector3 retryLevelButtonPos = new Vector3(-3.5f, -4f, 100);
+        GameObject retryLevelButton_go = (GameObject)Object.Instantiate(retryLevelButton, retryLevelButtonPos, Quaternion.identity);
+        retryLevelButton_go.transform.parent = itemCanvas_go.transform;
+
+        
         
     }
 

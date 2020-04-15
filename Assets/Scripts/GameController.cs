@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
         currLevel = 1;
 
         string scenename = SceneManager.GetActiveScene().name;
+        /*
         if (scenename.Substring(0, 5).Equals("Level")) {
           int level = System.Convert.ToInt32(scenename.Substring(5));
           LoadLevel(level);
@@ -38,6 +39,13 @@ public class GameController : MonoBehaviour
         }
         else if (scenename.Equals("GameMenu")) {
           GameObject.Find("Level_Select_Canvas").GetComponent<Canvas>().enabled = false;
+        }
+        */
+        if (scenename.Equals("GameMenu")) {
+          GameObject.Find("Level_Select_Canvas").GetComponent<Canvas>().enabled = false;
+        } else {
+          LoadLevel(currLevel);
+ 
         }
         
     }
@@ -62,6 +70,12 @@ public class GameController : MonoBehaviour
     public void LoadLevel(int level) {
         currLevel = level;
         reachedLevel = Mathf.Max(reachedLevel, currLevel);
+
+        if (gamestate != null){
+            Destroy (GameObject.Find ("LevelCanvas"));
+            Destroy (GameObject.Find ("ResultCanvas"));
+            gamestate = null;
+        }
 
         string result = GameObject.Find("LevelData").GetComponent<LevelData>().jsonString;
         gamestate = new GameState(currLevel, result); //result

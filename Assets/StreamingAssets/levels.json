@@ -24,5 +24,31 @@
             "coordX2": 2,
             "coordY2": 1
         }]
+    },
+    "Level2": {
+        "infectionPlusInc": 1,
+        "survivalPercentLevels": [60, 80, 95],
+        "blocksAllowed": 1,
+        "evacInc": 1,
+        "incTiming": 2,
+        "towns": [{
+                "coordX": 1,
+                "coordY": 1,
+                "townPop": 100,
+                "infectTime": 0
+            },
+            {
+                "coordX": 2,
+                "coordY": 1,
+                "townPop": 80,
+                "infectTime": 6
+            }
+        ],
+        "roads": [{
+            "coordX1": 1,
+            "coordY1": 1,
+            "coordX2": 2,
+            "coordY2": 1
+        }]
     }
 }
