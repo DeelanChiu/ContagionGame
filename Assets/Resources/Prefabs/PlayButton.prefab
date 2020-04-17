@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4571800880097864}
   - component: {fileID: 212168090896278770}
+  - component: {fileID: 65704459306262784}
+  - component: {fileID: 114119197289542336}
   m_Layer: 0
   m_Name: PlayButton
   m_TagString: Untagged
@@ -40,6 +42,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65704459306262784
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312885946023656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.7, y: 1.7, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114119197289542336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1312885946023656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53773b749876ef4d9bd07b04efcaa3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCanvas: {fileID: 0}
+  itemCanvas_go: {fileID: 0}
+  itemCanvasRect: {fileID: 0}
+  itemtype: 0
+  xpos: 0
+  ypos: 0
+  go: {fileID: 0}
 --- !u!212 &212168090896278770
 SpriteRenderer:
   m_ObjectHideFlags: 1

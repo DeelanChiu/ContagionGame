@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
 
     public int numLevels;
 
+    public LevelSelect levelselect;
+
     public GameState gs()
     {
         return gamestate;
@@ -73,7 +75,7 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         //Debug.Log(LoggingManager.instance.playerAB);
-        if (gamestate.EndGame && !gamestate.levelEnd){
+        if (gamestate != null && gamestate.EndGame && !gamestate.levelEnd){
             gamestate.setupWinLoseScreen();
         }
     }
@@ -103,6 +105,18 @@ public class GameController : MonoBehaviour
         GameObject levelSelectButton_go = (GameObject)Object.Instantiate(levelSelectButton, levelSelectButton_pos, Quaternion.identity);
         levelSelectButton_go.transform.parent = coverCanvas_go.transform;
 
+    }
+
+    private void cleanCanvas(){
+        Destroy (GameObject.Find ("LevelCanvas"));
+        Destroy (GameObject.Find ("ResultCanvas"));
+        Destroy(GameObject.Find ("CoverCanvas"));
+    }
+
+    public void LoadLevelSelect(){
+        cleanCanvas();
+
+        levelselect = new LevelSelect();
 
     }
 
@@ -110,9 +124,9 @@ public class GameController : MonoBehaviour
         currLevel = level;
         reachedLevel = Mathf.Max(reachedLevel, currLevel);
 
+        cleanCanvas();
+
         if (gamestate != null){
-            Destroy (GameObject.Find ("LevelCanvas"));
-            Destroy (GameObject.Find ("ResultCanvas"));
             gamestate = null;
         }
 
