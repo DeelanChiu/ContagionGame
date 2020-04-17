@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour
         numLevels = JSON.Parse(levelDataJson)["Levels"];
 
         string scenename = SceneManager.GetActiveScene().name;
+
+        loadCover();
         /*
         if (scenename.Substring(0, 5).Equals("Level")) {
           int level = System.Convert.ToInt32(scenename.Substring(5));
@@ -48,12 +50,14 @@ public class GameController : MonoBehaviour
           GameObject.Find("Level_Select_Canvas").GetComponent<Canvas>().enabled = false;
         }
         */
+        /*
         if (scenename.Equals("GameMenu")) {
           GameObject.Find("Level_Select_Canvas").GetComponent<Canvas>().enabled = false;
         } else {
           LoadLevel(currLevel);
  
         }
+        */
         
     }
 
@@ -72,6 +76,34 @@ public class GameController : MonoBehaviour
         if (gamestate.EndGame && !gamestate.levelEnd){
             gamestate.setupWinLoseScreen();
         }
+    }
+
+    public void loadCover(){
+        GameObject coverCanvas_go = new GameObject();
+        coverCanvas_go.name = "CoverCanvas";
+        coverCanvas_go.AddComponent<Canvas>();
+
+        Canvas coverCanvas = coverCanvas_go.GetComponent<Canvas>();
+        coverCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        coverCanvas.worldCamera = Camera.main.GetComponent<Camera>();
+        coverCanvas.sortingOrder = 1;
+
+        Object cover = Resources.Load<GameObject>("Prefabs/Cover");
+        Vector3 cover_pos = new Vector3(0, 0.6f, 100);
+        GameObject cover_go = (GameObject)Object.Instantiate(cover, cover_pos, Quaternion.identity);
+        cover_go.transform.parent = coverCanvas_go.transform;
+
+        Object playButton = Resources.Load<GameObject>("Prefabs/PlayButton");
+        Vector3 playButton_pos = new Vector3(-4.2f, -4.9f, 100);
+        GameObject playButton_go = (GameObject)Object.Instantiate(playButton, playButton_pos, Quaternion.identity);
+        playButton_go.transform.parent = coverCanvas_go.transform;
+
+        Object levelSelectButton = Resources.Load<GameObject>("Prefabs/LevelSelectButton");
+        Vector3 levelSelectButton_pos = new Vector3(4.2f, -4.9f, 100);
+        GameObject levelSelectButton_go = (GameObject)Object.Instantiate(levelSelectButton, levelSelectButton_pos, Quaternion.identity);
+        levelSelectButton_go.transform.parent = coverCanvas_go.transform;
+
+
     }
 
     public void LoadLevel(int level) {
