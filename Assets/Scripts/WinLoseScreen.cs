@@ -72,17 +72,24 @@ public class WinLoseScreen : GameItem
 
         }
 
+        Object retryLevelButton = Resources.Load<GameObject>("Prefabs/retryButton");
+        Vector3 retryLevelButtonPos = new Vector3(-5f, -4f, 100);
+        GameObject retryLevelButton_go = (GameObject)Object.Instantiate(retryLevelButton, retryLevelButtonPos, Quaternion.identity);
+        retryLevelButton_go.transform.parent = itemCanvas_go.transform;
+
         if (GameController.instance.currLevel < GameController.instance.numLevels && GameController.instance.gamestate.levelPass){
             Object nextLevelButton = Resources.Load<GameObject>("Prefabs/nextLevelButton");
-            Vector3 nextLevelButtonPos = new Vector3(3.5f, -4f, 100);
+            Vector3 nextLevelButtonPos = new Vector3(0, -4f, 100);
             GameObject nextLevelButton_go = (GameObject)Object.Instantiate(nextLevelButton, nextLevelButtonPos, Quaternion.identity);
             nextLevelButton_go.transform.parent = itemCanvas_go.transform;
         }
 
-        Object retryLevelButton = Resources.Load<GameObject>("Prefabs/retryButton");
-        Vector3 retryLevelButtonPos = new Vector3(-3.5f, -4f, 100);
-        GameObject retryLevelButton_go = (GameObject)Object.Instantiate(retryLevelButton, retryLevelButtonPos, Quaternion.identity);
-        retryLevelButton_go.transform.parent = itemCanvas_go.transform;
+        Object levelSelectButton = Resources.Load<GameObject>("Prefabs/LevelSelectButton");
+        Vector3 levelSelectButtonPos = new Vector3(5f, -4f, 100);
+        GameObject levelSelectButton_go = (GameObject)Object.Instantiate(levelSelectButton, levelSelectButtonPos, Quaternion.identity);
+        levelSelectButton_go.transform.parent = itemCanvas_go.transform;
+
+        
 
         
         
