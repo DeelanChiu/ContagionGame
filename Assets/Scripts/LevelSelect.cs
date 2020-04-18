@@ -49,6 +49,9 @@ public class LevelSelect{
             GameObject levelselect_go = (GameObject)Object.Instantiate(levelselect, levelselect_pos, Quaternion.identity);
             levelselect_go.transform.parent = canvas_go.transform;
 
+            LevelSelectPanel lsp = levelselect_go.GetComponent<LevelSelectPanel>();
+            lsp.setLevelNumber(levelNum);
+
 
         }
 
