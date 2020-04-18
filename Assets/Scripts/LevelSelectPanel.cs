@@ -59,7 +59,7 @@ public class LevelSelectPanel : GameItem
 
     void OnMouseDown()
     {
-        GameController.instance.LoadLevel(GameController.instance.currLevel);
+        GameController.instance.LoadLevel(levelNum);
 
     }
 

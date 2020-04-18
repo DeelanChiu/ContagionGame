@@ -111,6 +111,7 @@ public class GameController : MonoBehaviour
         Destroy (GameObject.Find ("LevelCanvas"));
         Destroy (GameObject.Find ("ResultCanvas"));
         Destroy(GameObject.Find ("CoverCanvas"));
+        Destroy(GameObject.Find ("LevelSelectCanvas"));
     }
 
     public void LoadLevelSelect(){
