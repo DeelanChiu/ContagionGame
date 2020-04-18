@@ -14,6 +14,7 @@ public class LevelSelectPanel : GameItem
     private GameObject text_go;
     private Text text;
     private RectTransform rectTransform;
+    private bool locked;
 
     new void Awake(){
         base.Awake();
@@ -44,6 +45,23 @@ public class LevelSelectPanel : GameItem
         rectTransform.sizeDelta = new Vector2(400, 200);
         rectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);
 
+        /*
+        GameObject lock_go = new GameObject();
+        lock_go.transform.parent = itemCanvas_go.transform;
+        SpriteRenderer lockSprite = lock_go.AddComponent<SpriteRenderer>();
+        lockSprite.sprite = Resources.Load<Sprite>("Prefabs/Lock");
+        lockSprite.sortingOrder = 2;
+        */
+    
+        locked = levelNum > GameController.instance.reachedLevel;
+
+        if (locked){
+            Object lockPic = Resources.Load<GameObject>("Prefabs/Lock");
+            GameObject lock_go = (GameObject)Object.Instantiate(lockPic, new Vector3(xpos, ypos, 100), Quaternion.identity);
+            lock_go.transform.parent = itemCanvas_go.transform;
+        
+        }
+
     }
 
     public void setLevelNumber(int n){
@@ -59,7 +77,9 @@ public class LevelSelectPanel : GameItem
 
     void OnMouseDown()
     {
-        GameController.instance.LoadLevel(levelNum);
+        if (!locked){
+            GameController.instance.LoadLevel(levelNum);
+        }
 
     }
 

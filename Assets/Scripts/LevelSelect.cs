@@ -51,6 +51,7 @@ public class LevelSelect{
 
             LevelSelectPanel lsp = levelselect_go.GetComponent<LevelSelectPanel>();
             lsp.setLevelNumber(levelNum);
+            lsp.setXY(xcoord, ycoord);
 
 
         }

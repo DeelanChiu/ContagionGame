@@ -43,13 +43,26 @@
                 "coordY": 1,
                 "townPop": 80,
                 "infectTime": 6
+            },
+            {
+                "coordX": 1,
+                "coordY": 2,
+                "townPop": 50,
+                "infectTime": 0
             }
         ],
         "roads": [{
-            "coordX1": 1,
-            "coordY1": 1,
-            "coordX2": 2,
-            "coordY2": 1
-        }]
+                "coordX1": 1,
+                "coordY1": 1,
+                "coordX2": 2,
+                "coordY2": 1
+            },
+            {
+                "coordX1": 1,
+                "coordY1": 1,
+                "coordX2": 1,
+                "coordY2": 2
+            }
+        ]
     }
 }
