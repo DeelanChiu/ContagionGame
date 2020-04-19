@@ -145,6 +145,7 @@ MonoBehaviour:
   currLevel: 0
   reachedLevel: 0
   numLevels: 1
+  levelHearts: 
 --- !u!4 &60034480
 Transform:
   m_ObjectHideFlags: 0

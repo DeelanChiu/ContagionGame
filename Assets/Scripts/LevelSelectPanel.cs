@@ -62,6 +62,15 @@ public class LevelSelectPanel : GameItem
         
         }
 
+        int heartNum = GameController.instance.levelHearts[levelNum-1];
+        Object smallHeart = Resources.Load<GameObject>("Prefabs/SmallHeart");
+        float heartPos = xpos-1;
+        for (int k = 0; k < heartNum; k++){
+            GameObject smallHeart_go = (GameObject)Object.Instantiate(smallHeart, new Vector3(heartPos, ypos-1.95f, 100), Quaternion.identity);
+            smallHeart_go.transform.parent = itemCanvas_go.transform;
+            heartPos+=1;
+        }
+
     }
 
     public void setLevelNumber(int n){

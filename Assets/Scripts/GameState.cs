@@ -371,6 +371,7 @@ public class GameState
         if (survivalPercent >= survivalPercentLevels[0]){
             prefabName += "winScreen";
             levelPass = true;
+            GameController.instance.reachedLevel = Mathf.Max(GameController.instance.reachedLevel, level+1);
         } else {
             prefabName += "loseScreen";
         }

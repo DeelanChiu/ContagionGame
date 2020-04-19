@@ -26,10 +26,12 @@ public class WinLoseScreen : GameItem
 
     void displayHearts(){
         Vector3 pos = new Vector3(-6f, -0.8f, 0);
+        int hearts = 0;
         foreach (int percent in GameController.instance.gamestate.survivalPercentLevels){
             string prefabName = "Prefabs/";
             if (GameController.instance.gamestate.survivalPercent >= percent){
                 prefabName+="heart";
+                hearts+=1;
             } else {
                 prefabName+="heartBlack";
             }
@@ -71,6 +73,8 @@ public class WinLoseScreen : GameItem
             heartTextRectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);
 
         }
+        int levelNum  = GameController.instance.gamestate.level;
+        GameController.instance.levelHearts[levelNum-1] = Mathf.Max(GameController.instance.levelHearts[levelNum-1], hearts);
 
         Object retryLevelButton = Resources.Load<GameObject>("Prefabs/retryButton");
         Vector3 retryLevelButtonPos = new Vector3(-5f, -4f, 100);

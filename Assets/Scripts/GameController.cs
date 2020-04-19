@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
 
     public LevelSelect levelselect;
 
+    public int[] levelHearts;
+
     public GameState gs()
     {
         return gamestate;
@@ -39,10 +41,12 @@ public class GameController : MonoBehaviour
 
         numLevels = JSON.Parse(levelDataJson)["Levels"];
 
-        string scenename = SceneManager.GetActiveScene().name;
+        levelHearts = new int[numLevels];
 
         loadCover();
         /*
+        string scenename = SceneManager.GetActiveScene().name;
+
         if (scenename.Substring(0, 5).Equals("Level")) {
           int level = System.Convert.ToInt32(scenename.Substring(5));
           LoadLevel(level);
@@ -123,7 +127,7 @@ public class GameController : MonoBehaviour
 
     public void LoadLevel(int level) {
         currLevel = level;
-        reachedLevel = Mathf.Max(reachedLevel, currLevel);
+        //reachedLevel = Mathf.Max(reachedLevel, currLevel);
 
         cleanCanvas();
 
