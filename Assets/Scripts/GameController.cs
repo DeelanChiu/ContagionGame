@@ -34,6 +34,15 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        /*
+        if (PlayerPrefs.HasKey("reachedLevel")){
+            reachedLevel = PlayerPrefs.GetInt("reachedLevel");
+        } else {
+            reachedLevel = 1;
+            PlayerPrefs.SetInt("reachedLevel", 1);
+        }
+        */
+        
         reachedLevel = 1;
         currLevel = 1;
 
@@ -79,10 +88,26 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         //Debug.Log(LoggingManager.instance.playerAB);
+        /*
         if (gamestate != null && gamestate.EndGame && !gamestate.levelEnd){
+            
             gamestate.setupWinLoseScreen();
         }
+        */
+        
     }
+    
+    IEnumerator checkLevelOver(){
+
+        while (gamestate == null || !gamestate.EndGame){
+            
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(1.5f);
+        gamestate.setupWinLoseScreen();
+
+    }
+    
 
     public void loadCover(){
         GameObject coverCanvas_go = new GameObject();
@@ -136,6 +161,7 @@ public class GameController : MonoBehaviour
         }
 
         gamestate = new GameState(currLevel); //result
+        StartCoroutine("checkLevelOver");
 
     }
 

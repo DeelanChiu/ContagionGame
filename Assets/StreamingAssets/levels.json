@@ -1,5 +1,5 @@
 {
-    "Levels": 2,
+    "Levels": 3,
     "Level1": {
         "infectionPlusInc": 1,
         "survivalPercentLevels": [60, 80, 95],
@@ -30,8 +30,8 @@
         "infectionPlusInc": 1,
         "survivalPercentLevels": [60, 80, 95],
         "blocksAllowed": 1,
-        "evacInc": 1,
-        "incTiming": 2,
+        "evacInc": 5,
+        "incTiming": 1,
         "towns": [{
                 "coordX": 1,
                 "coordY": 1,
@@ -62,6 +62,57 @@
                 "coordY1": 1,
                 "coordX2": 1,
                 "coordY2": 2
+            }
+        ]
+    },
+    "Level3": {
+        "infectionPlusInc": 1,
+        "survivalPercentLevels": [60, 80, 95],
+        "blocksAllowed": 2,
+        "evacInc": 5,
+        "incTiming": 1,
+        "towns": [{
+                "coordX": 1,
+                "coordY": 1,
+                "townPop": 100,
+                "infectTime": 0
+            },
+            {
+                "coordX": 2,
+                "coordY": 1,
+                "townPop": 80,
+                "infectTime": 6
+            },
+            {
+                "coordX": 1,
+                "coordY": 2,
+                "townPop": 50,
+                "infectTime": 0
+            },
+            {
+                "coordX": 2,
+                "coordY": 0,
+                "townPop": 60,
+                "infectTime": 0
+            }
+        ],
+        "roads": [{
+                "coordX1": 1,
+                "coordY1": 1,
+                "coordX2": 2,
+                "coordY2": 1
+            },
+            {
+                "coordX1": 1,
+                "coordY1": 1,
+                "coordX2": 1,
+                "coordY2": 2
+            },
+            {
+                "coordX1": 2,
+                "coordY1": 1,
+                "coordX2": 2,
+                "coordY2": 0
             }
         ]
     }

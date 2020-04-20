@@ -372,6 +372,7 @@ public class GameState
             prefabName += "winScreen";
             levelPass = true;
             GameController.instance.reachedLevel = Mathf.Max(GameController.instance.reachedLevel, level+1);
+            //PlayerPrefs.SetInt("reachedLevel", Mathf.Max(PlayerPrefs.GetInt("reachedLevel"), GameController.instance.reachedLevel));
         } else {
             prefabName += "loseScreen";
         }
