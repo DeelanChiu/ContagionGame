@@ -34,16 +34,16 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        /*
+        
         if (PlayerPrefs.HasKey("reachedLevel")){
             reachedLevel = PlayerPrefs.GetInt("reachedLevel");
+            
         } else {
             reachedLevel = 1;
             PlayerPrefs.SetInt("reachedLevel", 1);
         }
-        */
         
-        reachedLevel = 1;
+        //reachedLevel = 1;
         currLevel = 1;
 
         levelDataJson = GameObject.Find("LevelData").GetComponent<LevelData>().jsonString;

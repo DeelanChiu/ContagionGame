@@ -42,7 +42,6 @@ public class GameState
     private void loadData(){
         var gamedata = JSON.Parse(GameController.instance.levelDataJson);
         var leveldata = gamedata["Level" + level];
-
         infectionPlusInc = leveldata["infectionPlusInc"].AsInt;
         blksLeft = showBlocksLeft(leveldata["blocksAllowed"].AsInt);
         evacInc = leveldata["evacInc"].AsInt;
@@ -372,7 +371,8 @@ public class GameState
             prefabName += "winScreen";
             levelPass = true;
             GameController.instance.reachedLevel = Mathf.Max(GameController.instance.reachedLevel, level+1);
-            //PlayerPrefs.SetInt("reachedLevel", Mathf.Max(PlayerPrefs.GetInt("reachedLevel"), GameController.instance.reachedLevel));
+            GameController.instance.reachedLevel = Mathf.Min(GameController.instance.reachedLevel, GameController.instance.numLevels);
+            PlayerPrefs.SetInt("reachedLevel", Mathf.Max(PlayerPrefs.GetInt("reachedLevel"), GameController.instance.reachedLevel));
         } else {
             prefabName += "loseScreen";
         }

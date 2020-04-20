@@ -24,7 +24,7 @@ public class PlayButton : GameItem
 
     void OnMouseDown()
     {
-        GameController.instance.LoadLevel(GameController.instance.reachedLevel);
+        GameController.instance.LoadLevel(1);
 
     }
 
