@@ -21,7 +21,7 @@ public class GameState
 
     public float incTiming;
 
-    public int infectionPlusInc;
+    public float infectionPlusInc;
 
     public BlocksLeft blksLeft;
 
@@ -42,7 +42,7 @@ public class GameState
     private void loadData(){
         var gamedata = JSON.Parse(GameController.instance.levelDataJson);
         var leveldata = gamedata["Level" + level];
-        infectionPlusInc = leveldata["infectionPlusInc"].AsInt;
+        infectionPlusInc = leveldata["infectionPlusInc"].AsFloat;
         blksLeft = showBlocksLeft(leveldata["blocksAllowed"].AsInt);
         evacInc = leveldata["evacInc"].AsInt;
         incTiming = leveldata["incTiming"].AsFloat;

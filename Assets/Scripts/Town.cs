@@ -20,7 +20,7 @@ public class Town : GameItem
     private Animator animator;
     public int population;
     public int infectionProb;
-    private int currInfectionProb;
+    private float currInfectionProb;
 
     public List<Town> neighbors;
     List <Town> infectedNeighbors;
@@ -97,7 +97,7 @@ public class Town : GameItem
         infectedNeighbors = new List<Town>();
         //infectedNum = 0;
 
-        currInfectionProb = infectionProb;
+        currInfectionProb = (float)infectionProb;
 
         placeText();
         
@@ -122,12 +122,15 @@ public class Town : GameItem
     IEnumerator infectExposure() 
     {
         while (infectedNeighbors.Count  > 0) {
-            int infectInc = GameController.instance.gamestate.infectionPlusInc * infectedNeighbors.Count;
+            float infectInc = GameController.instance.gamestate.infectionPlusInc * (float)infectedNeighbors.Count;
+            if (GameController.instance.gamestate.blksLeft.getBlocksLeft() == 0){
+                infectInc = 20;
+            }
             currInfectionProb += infectInc;
             //Debug.Log(""+currInfectionProb);
             float diceRoll = Random.Range(0.0f, 1.0f);
             //Debug.Log(diceRoll+" "+(float)currInfectionProb / 100f);
-            if (diceRoll <= (float)currInfectionProb / 100f && GameController.instance.gamestate.level != 1){
+            if (diceRoll <= currInfectionProb / 100f && GameController.instance.gamestate.level != 1){
                 state = TownState.INFECTED;
                 yield return null;
             }

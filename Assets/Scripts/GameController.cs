@@ -60,18 +60,16 @@ public class GameController : MonoBehaviour
 
         levelHearts = new int[numLevels];
 
-        if (PlayerPrefs.HasKey("levelHearts")){
-            //reachedLevel = PlayerPrefs.GetInt("reachedLevel");
+        if (!PlayerPrefs.HasKey("levelHearts") || PlayerPrefs.GetString("levelHearts").Length  != numLevels){
+            string str = "";
+            str = str.PadLeft(levelHearts.Length, '0');
+            PlayerPrefs.SetString("levelHearts", str);
+        } else  {
             char[] heartNumArr = PlayerPrefs.GetString("levelHearts").ToCharArray();
             for(int k = 0; k < levelHearts.Length; k++) {
                 int heartNumInt = (int)Char.GetNumericValue(heartNumArr[k]);
                 levelHearts[k] = heartNumInt;
             }
-        } else {
-            string str = "";
-            str = str.PadLeft(levelHearts.Length, '0');
-            PlayerPrefs.SetString("levelHearts", str);
-            
         }
 
         audioSource = GetComponent<AudioSource>();
