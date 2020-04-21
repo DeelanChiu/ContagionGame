@@ -74,8 +74,19 @@ public class WinLoseScreen : GameItem
 
         }
         int levelNum  = GameController.instance.gamestate.level;
-        GameController.instance.levelHearts[levelNum-1] = Mathf.Max(GameController.instance.levelHearts[levelNum-1], hearts);
+        int newHeartNum = Mathf.Max(GameController.instance.levelHearts[levelNum-1], hearts);
+        GameController.instance.levelHearts[levelNum-1] = newHeartNum;
 
+        string levelHeartStr = PlayerPrefs.GetString("levelHearts");
+        string strA = levelHeartStr.Substring(0, levelNum-1);
+        string strB =  levelHeartStr.Substring(levelNum, levelHeartStr.Length - levelNum);
+        string newLevelHeartStr = strA + newHeartNum + strB;
+        PlayerPrefs.SetString("levelHearts", newLevelHeartStr);
+        Debug.Log(newLevelHeartStr);
+        
+    }
+
+    void displayButtons(){
         Object retryLevelButton = Resources.Load<GameObject>("Prefabs/retryButton");
         Vector3 retryLevelButtonPos = new Vector3(-5f, -4f, 100);
         GameObject retryLevelButton_go = (GameObject)Object.Instantiate(retryLevelButton, retryLevelButtonPos, Quaternion.identity);
@@ -92,11 +103,6 @@ public class WinLoseScreen : GameItem
         Vector3 levelSelectButtonPos = new Vector3(5f, -4f, 100);
         GameObject levelSelectButton_go = (GameObject)Object.Instantiate(levelSelectButton, levelSelectButtonPos, Quaternion.identity);
         levelSelectButton_go.transform.parent = itemCanvas_go.transform;
-
-        
-
-        
-        
     }
 
     // Use this for initialization
@@ -120,6 +126,7 @@ public class WinLoseScreen : GameItem
         rectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);
 
         displayHearts();
+        displayButtons();
     }
 
     // Update is called once per frame

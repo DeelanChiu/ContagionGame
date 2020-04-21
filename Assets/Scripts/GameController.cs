@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using SimpleJSON;
+using System;
 
 public class GameController : MonoBehaviour
 {
@@ -51,6 +52,22 @@ public class GameController : MonoBehaviour
         numLevels = JSON.Parse(levelDataJson)["Levels"];
 
         levelHearts = new int[numLevels];
+
+        if (PlayerPrefs.HasKey("levelHearts")){
+            //reachedLevel = PlayerPrefs.GetInt("reachedLevel");
+            char[] heartNumArr = PlayerPrefs.GetString("levelHearts").ToCharArray();
+            for(int k = 0; k < levelHearts.Length; k++) {
+                int heartNumInt = (int)Char.GetNumericValue(heartNumArr[k]);
+                levelHearts[k] = heartNumInt;
+            }
+        } else {
+            string str = "";
+            str = str.PadLeft(levelHearts.Length, '0');
+            PlayerPrefs.SetString("levelHearts", str);
+            
+        }
+
+        //levelHearts = new int[numLevels];
 
         loadCover();
         /*
@@ -119,19 +136,19 @@ public class GameController : MonoBehaviour
         coverCanvas.worldCamera = Camera.main.GetComponent<Camera>();
         coverCanvas.sortingOrder = 1;
 
-        Object cover = Resources.Load<GameObject>("Prefabs/Cover");
+        UnityEngine.Object cover = Resources.Load<GameObject>("Prefabs/Cover");
         Vector3 cover_pos = new Vector3(0, 0.6f, 100);
-        GameObject cover_go = (GameObject)Object.Instantiate(cover, cover_pos, Quaternion.identity);
+        GameObject cover_go = (GameObject)UnityEngine.Object.Instantiate(cover, cover_pos, Quaternion.identity);
         cover_go.transform.parent = coverCanvas_go.transform;
 
-        Object playButton = Resources.Load<GameObject>("Prefabs/PlayButton");
+        UnityEngine.Object playButton = Resources.Load<GameObject>("Prefabs/PlayButton");
         Vector3 playButton_pos = new Vector3(-4.2f, -4.9f, 100);
-        GameObject playButton_go = (GameObject)Object.Instantiate(playButton, playButton_pos, Quaternion.identity);
+        GameObject playButton_go = (GameObject)UnityEngine.Object.Instantiate(playButton, playButton_pos, Quaternion.identity);
         playButton_go.transform.parent = coverCanvas_go.transform;
 
-        Object levelSelectButton = Resources.Load<GameObject>("Prefabs/LevelSelectButton");
+        UnityEngine.Object levelSelectButton = Resources.Load<GameObject>("Prefabs/LevelSelectButton");
         Vector3 levelSelectButton_pos = new Vector3(4.2f, -4.9f, 100);
-        GameObject levelSelectButton_go = (GameObject)Object.Instantiate(levelSelectButton, levelSelectButton_pos, Quaternion.identity);
+        GameObject levelSelectButton_go = (GameObject)UnityEngine.Object.Instantiate(levelSelectButton, levelSelectButton_pos, Quaternion.identity);
         levelSelectButton_go.transform.parent = coverCanvas_go.transform;
 
     }
