@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     public AudioClip slam;
     public AudioClip invalid;
     public AudioClip alarm;
+    public AudioClip pass;
 
     public AudioSource audioSource;
 

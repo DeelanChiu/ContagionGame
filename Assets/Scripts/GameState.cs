@@ -387,8 +387,11 @@ public class GameState
             GameController.instance.reachedLevel = Mathf.Max(GameController.instance.reachedLevel, level+1);
             GameController.instance.reachedLevel = Mathf.Min(GameController.instance.reachedLevel, GameController.instance.numLevels);
             PlayerPrefs.SetInt("reachedLevel", Mathf.Max(PlayerPrefs.GetInt("reachedLevel"), GameController.instance.reachedLevel));
+        
+            GameController.instance.audioSource.PlayOneShot(GameController.instance.pass, 5);
         } else {
             prefabName += "loseScreen";
+             GameController.instance.audioSource.PlayOneShot(GameController.instance.alarm, 1);
         }
         Object winScreen = Resources.Load<GameObject>(prefabName);
         Vector3 pos = new Vector3(0f, -0.6f, 100);
