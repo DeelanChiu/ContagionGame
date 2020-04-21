@@ -132,6 +132,7 @@ public class GameState
         }
         
         showPopAlive();
+        showLevelSign();
         
     }
     
@@ -349,6 +350,19 @@ public class GameState
         //set XY
         PopAlive pa = popalive_go.GetComponent<PopAlive>();
         return pa;
+    }
+
+    LevelSign showLevelSign (){
+        string prefabName = "Prefabs/LevelSign";
+        Object levelsign = Resources.Load<GameObject>(prefabName);
+        Vector3 pos = new Vector3(-6f, 5.4f, 100);
+        GameObject levelsign_go = (GameObject)Object.Instantiate(levelsign, pos, Quaternion.identity);
+        levelsign_go.transform.parent = canvas_go.transform;
+        
+        //set XY
+        LevelSign lvs = levelsign_go.GetComponent<LevelSign>();
+
+        return lvs;
     }
 
     public WinLoseScreen setupWinLoseScreen(){
