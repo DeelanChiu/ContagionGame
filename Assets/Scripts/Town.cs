@@ -214,6 +214,8 @@ public class Town : GameItem
         }
         else if (state == TownState.INFECTED)
         {
+            GameController.instance.audioSource.PlayOneShot(GameController.instance.alarm, 1);
+
             animator.SetInteger("TownState", 2);
             StopCoroutine("infectExposure");
 
