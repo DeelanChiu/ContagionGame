@@ -71,13 +71,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb87c1b7a5fca449b61a4f09038aae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemCanvas: {fileID: 0}
+  itemCanvas_go: {fileID: 0}
+  itemCanvasRect: {fileID: 0}
   itemtype: 0
-  x: 0
-  y: 0
+  xpos: 0
+  ypos: 0
   go: {fileID: 0}
   state: 0
   population: 100
-  infectionProb: 5
+  infectionProb: 0
   neighbors: []
 --- !u!212 &212863454781724722
 SpriteRenderer:

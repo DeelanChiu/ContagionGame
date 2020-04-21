@@ -142,11 +142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelDataJson: 
-  goToLevel: 0
   currLevel: 0
   reachedLevel: 0
   numLevels: 1
   levelHearts: 
+  click: {fileID: 8300000, guid: 5d57d34153775bb4891ec5706b981719, type: 3}
+  slam: {fileID: 8300000, guid: 7cbe50b7c3d171b41a646fd3c59f44a8, type: 3}
+  invalid: {fileID: 8300000, guid: e20ebb85fda332543b0eae279f147378, type: 3}
+  audioSource: {fileID: 0}
 --- !u!4 &60034480
 Transform:
   m_ObjectHideFlags: 0
