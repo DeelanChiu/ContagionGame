@@ -25,6 +25,7 @@ public class PlayButton : GameItem
     void OnMouseDown()
     {
         GameController.instance.LoadLevel(1);
+        GameController.instance.audioSource.PlayOneShot(GameController.instance.click, 1);
 
     }
 

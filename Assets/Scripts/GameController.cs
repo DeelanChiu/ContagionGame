@@ -28,6 +28,10 @@ public class GameController : MonoBehaviour
 
     public int[] levelHearts;
 
+    public AudioClip click;
+
+    public AudioSource audioSource;
+
     public GameState gs()
     {
         return gamestate;
@@ -66,6 +70,8 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetString("levelHearts", str);
             
         }
+
+        audioSource = GetComponent<AudioSource>();
 
         //levelHearts = new int[numLevels];
 

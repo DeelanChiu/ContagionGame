@@ -254,7 +254,7 @@ public class GameState
             if (coordY1 == 0){
                 y = 1.1f;
             } else if (coordY1 == 1){
-                y = -3.0f;
+                y = -2.8f;
             }
 
         } else if (coordY1 == coordY2) { //horizontal
@@ -263,7 +263,7 @@ public class GameState
             if (coordX1 == 0){
                 x = -4.4f;
             } else if (coordX1 == 1){
-                x = 0.2f;
+                x = 0f;
             } else if (coordX1 == 2){
                 x = 4.5f;
             }

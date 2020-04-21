@@ -25,6 +25,7 @@ public class LevelSelectButton : GameItem
     void OnMouseDown()
     {
         GameController.instance.LoadLevelSelect();
+        GameController.instance.audioSource.PlayOneShot(GameController.instance.click, 1);
 
     }
 

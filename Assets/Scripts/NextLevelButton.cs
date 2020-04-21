@@ -25,6 +25,7 @@ public class NextLevelButton : GameItem
     void OnMouseDown()
     {
         GameController.instance.LoadLevel(GameController.instance.currLevel+1);
+        GameController.instance.audioSource.PlayOneShot(GameController.instance.click, 1);
 
     }
 

@@ -25,6 +25,7 @@ public class RetryButton : GameItem
     void OnMouseDown()
     {
         GameController.instance.LoadLevel(GameController.instance.currLevel);
+        GameController.instance.audioSource.PlayOneShot(GameController.instance.click, 1);
 
     }
 
