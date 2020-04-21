@@ -63,7 +63,11 @@ public class Road : GameItem
             town2.cutOff(town1);
 
             animator.SetBool("Blocked", true);
-        }      
+
+            GameController.instance.audioSource.PlayOneShot(GameController.instance.slam, 1);
+        } else {
+            GameController.instance.audioSource.PlayOneShot(GameController.instance.invalid, 1);
+        }
 
     }
 

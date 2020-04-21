@@ -89,6 +89,8 @@ public class LevelSelectPanel : GameItem
         if (!locked){
             GameController.instance.LoadLevel(levelNum);
             GameController.instance.audioSource.PlayOneShot(GameController.instance.click, 1);
+        } else {
+            GameController.instance.audioSource.PlayOneShot(GameController.instance.invalid, 1);
         }
 
     }

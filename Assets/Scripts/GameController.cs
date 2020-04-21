@@ -16,8 +16,6 @@ public class GameController : MonoBehaviour
 
     public string levelDataJson;
 
-    public int goToLevel;
-
     public int currLevel;
 
     public int reachedLevel;
@@ -29,6 +27,9 @@ public class GameController : MonoBehaviour
     public int[] levelHearts;
 
     public AudioClip click;
+
+    public AudioClip slam;
+    public AudioClip invalid;
 
     public AudioSource audioSource;
 
