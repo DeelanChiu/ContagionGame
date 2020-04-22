@@ -1,5 +1,5 @@
 {
-    "Levels": 7,
+    "Levels": 8,
     "Level1": {
         "infectionPlusInc": 0.5,
         "survivalPercentLevels": [60, 70, 85],
@@ -496,6 +496,129 @@
                 "coordX1": 2,
                 "coordY1": 2,
                 "coordX2": 3,
+                "coordY2": 2
+            }
+        ]
+    },
+    "Level8": {
+        "infectionPlusInc": 1,
+        "survivalPercentLevels": [60, 70, 85],
+        "blocksAllowed": 3,
+        "evacInc": 2,
+        "incTiming": 1,
+        "towns": [{
+                "coordX": 1,
+                "coordY": 0,
+                "townPop": 50,
+                "infectTime": 4
+            },
+            {
+                "coordX": 2,
+                "coordY": 0,
+                "townPop": 20,
+                "infectTime": 4
+            },
+            {
+                "coordX": 0,
+                "coordY": 1,
+                "townPop": 50,
+                "infectTime": 0
+            },
+            {
+                "coordX": 1,
+                "coordY": 1,
+                "townPop": 80,
+                "infectTime": 0
+            },
+            {
+                "coordX": 2,
+                "coordY": 1,
+                "townPop": 10,
+                "infectTime": 0
+            },
+            {
+                "coordX": 3,
+                "coordY": 1,
+                "townPop": 5,
+                "infectTime": 0
+            },
+            {
+                "coordX": 1,
+                "coordY": 2,
+                "townPop": 120,
+                "infectTime": 0
+            },
+            {
+                "coordX": 2,
+                "coordY": 2,
+                "townPop": 100,
+                "infectTime": 0
+            }
+        ],
+        "roads": [{
+                "coordX1": 0,
+                "coordY1": 1,
+                "coordX2": 1,
+                "coordY2": 0
+            },
+            {
+                "coordX1": 1,
+                "coordY1": 0,
+                "coordX2": 2,
+                "coordY2": 1
+            },
+            {
+                "coordX1": 2,
+                "coordY1": 0,
+                "coordX2": 2,
+                "coordY2": 1
+            },
+            {
+                "coordX1": 2,
+                "coordY1": 0,
+                "coordX2": 3,
+                "coordY2": 1
+            },
+            {
+                "coordX1": 0,
+                "coordY1": 1,
+                "coordX2": 1,
+                "coordY2": 1
+            },
+            {
+                "coordX1": 1,
+                "coordY1": 1,
+                "coordX2": 2,
+                "coordY2": 1
+            },
+            {
+                "coordX1": 2,
+                "coordY1": 1,
+                "coordX2": 3,
+                "coordY2": 1
+            },
+            {
+                "coordX1": 0,
+                "coordY1": 1,
+                "coordX2": 1,
+                "coordY2": 2
+            },
+            {
+                "coordX1": 1,
+                "coordY1": 1,
+                "coordX2": 1,
+                "coordY2": 2
+            },
+            {
+                "coordX1": 1,
+                "coordY1": 2,
+                "coordX2": 2,
+                "coordY2": 1
+            },
+            {
+                "coordX1": 1,
+                "coordY1": 2,
+                "coordX2": 2,
                 "coordY2": 2
             }
         ]

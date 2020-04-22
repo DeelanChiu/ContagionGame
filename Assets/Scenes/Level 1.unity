@@ -150,6 +150,7 @@ MonoBehaviour:
   slam: {fileID: 8300000, guid: 7cbe50b7c3d171b41a646fd3c59f44a8, type: 3}
   invalid: {fileID: 8300000, guid: e20ebb85fda332543b0eae279f147378, type: 3}
   alarm: {fileID: 8300000, guid: 3d0e7abfbadb7804588b591fc4412d60, type: 3}
+  pass: {fileID: 8300000, guid: b803881736a534d44b34980af22a9c6b, type: 3}
   audioSource: {fileID: 0}
 --- !u!4 &60034480
 Transform:
