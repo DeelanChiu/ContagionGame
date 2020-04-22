@@ -147,8 +147,14 @@ public class Town : GameItem
         while (neighbors.Count > 0 && population > 0) {
             //Debug.Log(neighbors.Count);
             foreach ( Town neighborTown in neighbors){
-                population -= GameController.instance.gamestate.evacInc;
-                neighborTown.population += GameController.instance.gamestate.evacInc;
+                int actualEvacInc = GameController.instance.gamestate.evacInc;
+                if (population == 0){
+                    break;
+                } else if (population - actualEvacInc < 0){
+                    actualEvacInc = population;
+                }
+                population -= actualEvacInc;
+                neighborTown.population += actualEvacInc;
             }
 
             yield return new WaitForSeconds(GameController.instance.gamestate.incTiming);
