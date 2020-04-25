@@ -3,7 +3,7 @@ Hello! This is a game called Contagion that I built as a personal project using 
 It asks players to save as many people as possible amidst a pandemic by preventing a deadly virus from spreading
 across every town.
 
-To play, simply clone the repository and execute the file Build/Contagion.exe. The game's intended resolution is 1024 x 768.
+To play, simply clone the repository and execute the file for your respective operating system (BuildForWindows/Contagion.exe for Windows and BuildForMacOS.app for Mac OS). The game's intended resolution is 1024 x 768.
 
 ## How to Play
 ![Demo](/demo.PNG)
