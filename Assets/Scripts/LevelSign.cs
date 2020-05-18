@@ -26,7 +26,8 @@ public class LevelSign : GameItem
     void Start()
     {
         text_go = new GameObject();
-        text_go.transform.parent = itemCanvas_go.transform;
+        //text_go.transform.parent = itemCanvas_go.transform;
+        text_go.transform.SetParent(itemCanvas_go.transform);
         text_go.name = "BlocksLeftInfo";
 
         text = text_go.AddComponent<Text>();

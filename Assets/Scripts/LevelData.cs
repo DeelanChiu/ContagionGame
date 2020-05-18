@@ -37,7 +37,7 @@ public class LevelData : MonoBehaviour {
 	}
 
 	private void doneLoading() {
-        Debug.Log("done loading");
+        //Debug.Log("done loading");
 
         //create start game button;
         //Vector3 pos = new Vector3(0, 0, 100);

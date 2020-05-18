@@ -146,17 +146,20 @@ public class GameController : MonoBehaviour
         UnityEngine.Object cover = Resources.Load<GameObject>("Prefabs/Cover");
         Vector3 cover_pos = new Vector3(0, 0.6f, 100);
         GameObject cover_go = (GameObject)UnityEngine.Object.Instantiate(cover, cover_pos, Quaternion.identity);
-        cover_go.transform.parent = coverCanvas_go.transform;
+        //cover_go.transform.parent = coverCanvas_go.transform;
+        cover_go.transform.SetParent(coverCanvas_go.transform);
 
         UnityEngine.Object playButton = Resources.Load<GameObject>("Prefabs/PlayButton");
         Vector3 playButton_pos = new Vector3(-4.2f, -4.9f, 100);
         GameObject playButton_go = (GameObject)UnityEngine.Object.Instantiate(playButton, playButton_pos, Quaternion.identity);
-        playButton_go.transform.parent = coverCanvas_go.transform;
+        //playButton_go.transform.parent = coverCanvas_go.transform;
+        playButton_go.transform.SetParent(coverCanvas_go.transform);
 
         UnityEngine.Object levelSelectButton = Resources.Load<GameObject>("Prefabs/LevelSelectButton");
         Vector3 levelSelectButton_pos = new Vector3(4.2f, -4.9f, 100);
         GameObject levelSelectButton_go = (GameObject)UnityEngine.Object.Instantiate(levelSelectButton, levelSelectButton_pos, Quaternion.identity);
-        levelSelectButton_go.transform.parent = coverCanvas_go.transform;
+        //levelSelectButton_go.transform.parent = coverCanvas_go.transform;
+        levelSelectButton_go.transform.SetParent(coverCanvas_go.transform);
 
     }
 

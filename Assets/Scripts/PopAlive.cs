@@ -9,7 +9,7 @@ public class PopAlive : GameItem
 {
     private Animator animator;
 
-    int remainingPop;
+    //int remainingPop;
 
     private GameObject text_go;
     private Text text;
@@ -28,7 +28,8 @@ public class PopAlive : GameItem
     void Start()
     {
         text_go = new GameObject();
-        text_go.transform.parent = itemCanvas_go.transform;
+        //text_go.transform.parent = itemCanvas_go.transform;
+        text_go.transform.SetParent(itemCanvas_go.transform);
         text_go.name = "PopAliveInfo";
 
         text = text_go.AddComponent<Text>();
@@ -43,7 +44,7 @@ public class PopAlive : GameItem
         rectTransform.sizeDelta = new Vector2(400, 200);
         rectTransform.localScale = new Vector3(0.015f,0.015f,0.015f);
 
-        remainingPop = GameController.instance.gamestate.totalPopulation;
+        //remainingPop = GameController.instance.gamestate.totalPopulation;
         //Debug.Log(remainingPop);
         
     }
@@ -51,7 +52,8 @@ public class PopAlive : GameItem
     // Update is called once per frame
     void Update()
     {
-        text.text = GameController.instance.gamestate.currPopulation+" / "+GameController.instance.gamestate.totalPopulation;
+        if (GameController.instance != null && GameController.instance.gamestate != null)
+            text.text = GameController.instance.gamestate.currPopulation+" / "+GameController.instance.gamestate.totalPopulation;
 
     }
 

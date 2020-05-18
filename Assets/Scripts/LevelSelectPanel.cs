@@ -28,7 +28,8 @@ public class LevelSelectPanel : GameItem
     void Start()
     {
         text_go = new GameObject();
-        text_go.transform.parent = itemCanvas_go.transform;
+        //text_go.transform.parent = itemCanvas_go.transform;
+        text_go.transform.SetParent(itemCanvas_go.transform);
         text_go.name = "LevelSelectInfo";
 
         text = text_go.AddComponent<Text>();
@@ -47,7 +48,7 @@ public class LevelSelectPanel : GameItem
 
         /*
         GameObject lock_go = new GameObject();
-        lock_go.transform.parent = itemCanvas_go.transform;
+        //lock_go.transform.parent = itemCanvas_go.transform;
         SpriteRenderer lockSprite = lock_go.AddComponent<SpriteRenderer>();
         lockSprite.sprite = Resources.Load<Sprite>("Prefabs/Lock");
         lockSprite.sortingOrder = 2;
@@ -58,8 +59,9 @@ public class LevelSelectPanel : GameItem
         if (locked){
             Object lockPic = Resources.Load<GameObject>("Prefabs/Lock");
             GameObject lock_go = (GameObject)Object.Instantiate(lockPic, new Vector3(xpos, ypos, 100), Quaternion.identity);
-            lock_go.transform.parent = itemCanvas_go.transform;
-        
+            //lock_go.transform.parent = itemCanvas_go.transform;
+            lock_go.transform.SetParent(itemCanvas_go.transform);
+
         }
 
         int heartNum = GameController.instance.levelHearts[levelNum-1];
@@ -67,7 +69,8 @@ public class LevelSelectPanel : GameItem
         float heartPos = xpos-1;
         for (int k = 0; k < heartNum; k++){
             GameObject smallHeart_go = (GameObject)Object.Instantiate(smallHeart, new Vector3(heartPos, ypos-1.95f, 100), Quaternion.identity);
-            smallHeart_go.transform.parent = itemCanvas_go.transform;
+            //smallHeart_go.transform.parent = itemCanvas_go.transform;
+            smallHeart_go.transform.SetParent(itemCanvas_go.transform);
             heartPos+=1;
         }
 

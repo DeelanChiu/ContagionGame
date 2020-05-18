@@ -47,7 +47,8 @@ public class LevelSelect{
             Object levelselect = Resources.Load<GameObject>("Prefabs/LevelSelectPanel");
             Vector3 levelselect_pos = new Vector3(xcoord, ycoord, 100);
             GameObject levelselect_go = (GameObject)Object.Instantiate(levelselect, levelselect_pos, Quaternion.identity);
-            levelselect_go.transform.parent = canvas_go.transform;
+            //levelselect_go.transform.parent = canvas_go.transform;
+            levelselect_go.transform.SetParent(canvas_go.transform);
 
             LevelSelectPanel lsp = levelselect_go.GetComponent<LevelSelectPanel>();
             lsp.setLevelNumber(levelNum);

@@ -29,7 +29,8 @@ public class BlocksLeft : GameItem
     {
         text_go = new GameObject();
         //text_go.transform.parent = GameController.instance.gamestate.canvas_go.transform;
-        text_go.transform.parent = itemCanvas_go.transform;
+        //text_go.transform.parent = itemCanvas_go.transform;
+        text_go.transform.SetParent(itemCanvas_go.transform);
         text_go.name = "BlocksLeftInfo";
 
         text = text_go.AddComponent<Text>();

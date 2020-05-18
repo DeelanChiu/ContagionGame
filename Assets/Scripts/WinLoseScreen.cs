@@ -44,7 +44,8 @@ public class WinLoseScreen : GameItem
 
             GameObject heartCanvas_go = new GameObject();
             heartCanvas_go.AddComponent<Canvas>();
-            heartCanvas_go.transform.parent = heart_go.transform;
+            //heartCanvas_go.transform.parent = heart_go.transform;
+            heartCanvas_go.transform.SetParent(heart_go.transform);
             Canvas heartCanvas = heartCanvas_go.GetComponent<Canvas>();
             heartCanvas_go.AddComponent<CanvasScaler>();
             heartCanvas_go.AddComponent<GraphicRaycaster>();
@@ -57,7 +58,8 @@ public class WinLoseScreen : GameItem
 
             GameObject heartText_go = new GameObject();
             //text_go.transform.parent = GameController.instance.gamestate.canvas_go.transform;
-            heartText_go.transform.parent = heartCanvas_go.transform;
+            //heartText_go.transform.parent = heartCanvas_go.transform;
+            heartText_go.transform.SetParent(heartCanvas_go.transform);
             heartText_go.name = "HeartInfo";
 
             Text heartText = heartText_go.AddComponent<Text>();
@@ -82,7 +84,7 @@ public class WinLoseScreen : GameItem
         string strB =  levelHeartStr.Substring(levelNum, levelHeartStr.Length - levelNum);
         string newLevelHeartStr = strA + newHeartNum + strB;
         PlayerPrefs.SetString("levelHearts", newLevelHeartStr);
-        Debug.Log(newLevelHeartStr);
+        //Debug.Log(newLevelHeartStr);
         
     }
 
@@ -90,19 +92,22 @@ public class WinLoseScreen : GameItem
         Object retryLevelButton = Resources.Load<GameObject>("Prefabs/retryButton");
         Vector3 retryLevelButtonPos = new Vector3(-5f, -4f, 100);
         GameObject retryLevelButton_go = (GameObject)Object.Instantiate(retryLevelButton, retryLevelButtonPos, Quaternion.identity);
-        retryLevelButton_go.transform.parent = itemCanvas_go.transform;
+        //retryLevelButton_go.transform.parent = itemCanvas_go.transform;
+        retryLevelButton_go.transform.SetParent(itemCanvas_go.transform);
 
         if (GameController.instance.currLevel < GameController.instance.numLevels && GameController.instance.gamestate.levelPass){
             Object nextLevelButton = Resources.Load<GameObject>("Prefabs/nextLevelButton");
             Vector3 nextLevelButtonPos = new Vector3(0, -4f, 100);
             GameObject nextLevelButton_go = (GameObject)Object.Instantiate(nextLevelButton, nextLevelButtonPos, Quaternion.identity);
-            nextLevelButton_go.transform.parent = itemCanvas_go.transform;
+            //nextLevelButton_go.transform.parent = itemCanvas_go.transform;
+            nextLevelButton_go.transform.SetParent(itemCanvas_go.transform);
         }
 
         Object levelSelectButton = Resources.Load<GameObject>("Prefabs/LevelSelectButton");
         Vector3 levelSelectButtonPos = new Vector3(5f, -4f, 100);
         GameObject levelSelectButton_go = (GameObject)Object.Instantiate(levelSelectButton, levelSelectButtonPos, Quaternion.identity);
-        levelSelectButton_go.transform.parent = itemCanvas_go.transform;
+        //levelSelectButton_go.transform.parent = itemCanvas_go.transform;
+        levelSelectButton_go.transform.SetParent(itemCanvas_go.transform);
     }
 
     // Use this for initialization

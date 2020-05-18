@@ -39,7 +39,7 @@ public abstract class GameItem : MonoBehaviour {
     public void Awake(){
         itemCanvas_go = new GameObject();
         itemCanvas_go.AddComponent<Canvas>();
-        itemCanvas_go.transform.parent = this.transform;
+        itemCanvas_go.transform.SetParent(this.transform);
 
         itemCanvas = itemCanvas_go.GetComponent<Canvas>();
         itemCanvas_go.AddComponent<CanvasScaler>();
